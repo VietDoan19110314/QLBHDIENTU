@@ -24,6 +24,6 @@ namespace QLCHDoDienTu {
 			this.DiaChi = DiaChi_;
 		}
 		// liên kết 1-n
-		public ICollection<HoaDon> dshoadon_khachhang { get; set; }
+		//public ICollection<HoaDon> dshoadon_khachhang { get; set; }
 	}
 }

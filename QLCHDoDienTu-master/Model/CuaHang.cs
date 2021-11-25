@@ -20,6 +20,6 @@ namespace QLCHDoDienTu {
 		// liên kết 1-1
 		public Kho KHO { get; set; }
 		// liên kết 1-n
-		public ICollection<NhanVien> dsnhanvien_cuahang { get; set; }
+		//public ICollection<NhanVien> dsnhanvien_cuahang { get; set; }
 	}
 }

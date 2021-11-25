@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLCHDoDienTu
-{
-    public class QLCHDoDienTu
-    {
+namespace QLCHDoDienTu {
+    public class QLCHDoDienTu {
         static LoaiHang[] loaiHangs;
         static ChiTietHoaDon[] chiTietHoaDons;
         static CuaHang[] cuaHangs;
         static HoaDon[] hoaDons;
         static KhachHang[] khachHangs;
         static Kho[] khos;
-        static NhaCungCap[] nhaCungCaps;
+        //static NhaCungCap[] nhaCungCaps;
+        static List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
         static NhanVien[] nhanViens;
         static SanPham[] sanPhams;
         static ThanNhan[] thanNhans;
-        public static void taoDSLoaiHang()
-        {
+        public static void taoDSLoaiHang() {
             loaiHangs = new LoaiHang[6];
             loaiHangs[0] = new LoaiHang(1, "Laptop");
             loaiHangs[1] = new LoaiHang(2, "Dien thoai di dong");
@@ -28,8 +26,7 @@ namespace QLCHDoDienTu
             loaiHangs[4] = new LoaiHang(5, "May giat");
             loaiHangs[5] = new LoaiHang(6, "May dieu hoa");
         }
-        public static void taoDSSanPham()
-        {
+        public static void taoDSSanPham() {
             sanPhams = new SanPham[26];
             sanPhams[0] = new SanPham(01, "Laptop Asus", 16000000, 1, 2021, 001, 1);
             sanPhams[1] = new SanPham(25, "Laptop Asus 1", 17000000, 1, 2021, 002, 1);
@@ -58,16 +55,13 @@ namespace QLCHDoDienTu
             sanPhams[24] = new SanPham(23, "May dieu hoa Toshiba", 6800000, 2, 2020, 004, 5);
             sanPhams[25] = new SanPham(24, "May dieu hoa LG", 9490000, 2, 2021, 004, 5);
         }
-        public static void taoDSNhaCungCap()
-        {
-            nhaCungCaps = new NhaCungCap[4];
-            nhaCungCaps[0] = new NhaCungCap(001, "Nha cung cap Hoai Phong", "A24 Cong Quynh, Phuong Nguyen Cu Trinh, Quan 1, Thanh pho Ho Chi Minh", "0925306345", "hoaiphong@gmail.com");
-            nhaCungCaps[1] = new NhaCungCap(002, "Nha cung cap Dien Tu VIP", "151, Duong Nguyen Du, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh", "0936368581", "dienmayVIP@gmail.com");
-            nhaCungCaps[2] = new NhaCungCap(003, "Nha cung cap Techbot", "Kim Giang, Phuong Dai Kim, Quan Hoang Mai, Ha Noi", "0905644699", "techbot@gmail.com");
-            nhaCungCaps[3] = new NhaCungCap(004, "Nha cung cap Intelligent", "So 175 duong Thich Quang Duc, Phuong Chanh Nghia, TP. Thu Dau Mot, Binh Duong.", "0912345678", "intelligent@gmail.com");
+        public static void taoDSNhaCungCap() {
+            nhaCungCaps.Add(new NhaCungCap(001, "Nha cung cap Hoai Phong", "A24 Cong Quynh, Phuong Nguyen Cu Trinh, Quan 1, Thanh pho Ho Chi Minh", "0925306345", "hoaiphong@gmail.com"));
+            nhaCungCaps.Add(new NhaCungCap(002, "Nha cung cap Dien Tu VIP", "151, Duong Nguyen Du, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh", "0936368581", "dienmayVIP@gmail.com"));
+            nhaCungCaps.Add(new NhaCungCap(003, "Nha cung cap Techbot", "Kim Giang, Phuong Dai Kim, Quan Hoang Mai, Ha Noi", "0905644699", "techbot@gmail.com"));
+            nhaCungCaps.Add(new NhaCungCap(004, "Nha cung cap Intelligent", "So 175 duong Thich Quang Duc, Phuong Chanh Nghia, TP. Thu Dau Mot, Binh Duong.", "0912345678", "intelligent@gmail.com"));
         }
-        public static void taoDSKhachHang()
-        {
+        public static void taoDSKhachHang() {
             khachHangs = new KhachHang[5];
             DateTime dt1 = new DateTime(1993, 12, 20, 10, 40, 26);
             khachHangs[0] = new KhachHang(0001, "Nguyen Van Nam", "Nam", dt1, "0973144226", "namnv@gmail.com", "215B Mai Xuan Thuong, Phuong 6, Quan 6, Thanh pho Ho Chi Minh");
@@ -80,8 +74,7 @@ namespace QLCHDoDienTu
             DateTime dt5 = new DateTime(1998, 6, 5, 1, 59, 22);
             khachHangs[4] = new KhachHang(0005, "Nguyen Thi Nga", "Nu", dt5, "0988667889", "ngant@gmail.com", "191 Van Chuong, Phuong Van Chuong, Quan Dong Da, Ha Noi");
         }
-        public static void taoDSThanNhan()
-        {
+        public static void taoDSThanNhan() {
             thanNhans = new ThanNhan[8];
             DateTime dt1 = new DateTime(1965, 11, 21, 11, 41, 27);
             thanNhans[0] = new ThanNhan(00001, "Nguyen Manh Cuong", "Bo", "Nam", dt1, 000001);
@@ -100,8 +93,7 @@ namespace QLCHDoDienTu
             DateTime dt8 = new DateTime(1968, 10, 10, 11, 23, 34);
             thanNhans[7] = new ThanNhan(00008, "Doan Ngoc Phuong Linh", "Me", "Nu", dt8, 000008);
         }
-        public static void taoDSNhanVien()
-        {
+        public static void taoDSNhanVien() {
             nhanViens = new NhanVien[10];
             DateTime dt1 = new DateTime(1999, 12, 22, 9, 39, 25);
             DateTime dt2 = new DateTime(2015, 3, 11, 14, 39, 25);
@@ -124,18 +116,16 @@ namespace QLCHDoDienTu
             nhanViens[6] = new NhanVien(000007, "Doan Van Huy", "Nam", dt11, "468, quan Cau Giay, Ha Noi", dt12, 7500000, 0000003);
             DateTime dt13 = new DateTime(2000, 7, 7, 7, 7, 7);
             DateTime dt14 = new DateTime(2020, 8, 8, 8, 8, 8);
-            nhanViens[7] = new NhanVien(000008, "Doan Van Chien", "Nam", dt13, "468, quan Cau Giay, Ha Noi", dt14, 7600000, 0000003); 
+            nhanViens[7] = new NhanVien(000008, "Doan Van Chien", "Nam", dt13, "468, quan Cau Giay, Ha Noi", dt14, 7600000, 0000003);
         }
-        public static void taoDSCuaHang()
-        {
+        public static void taoDSCuaHang() {
             cuaHangs = new CuaHang[3];
             cuaHangs[0] = new CuaHang(0000001, "245, quan Cau Giay, Ha Noi", "0979796721", "fpt@gmail.com");
             cuaHangs[1] = new CuaHang(0000002, "123, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh", "0932331414", "tgdd@gmail.com");
             cuaHangs[2] = new CuaHang(0000003, "226 Phuong Dai Kim, Quan Hoang Mai, Ha Noi", "0928294422", "vuphong@gmail.com");
-           
+
         }
-        public static void taoDSKho()
-        {
+        public static void taoDSKho() {
             khos = new Kho[50];
             khos[0] = new Kho(0000001, 01, 10);
             khos[1] = new Kho(0000001, 03, 30);
@@ -167,8 +157,7 @@ namespace QLCHDoDienTu
             khos[27] = new Kho(0000003, 20, 20);
             khos[28] = new Kho(0000003, 21, 12);
         }
-        public static void taoDSHoaDon()
-        {
+        public static void taoDSHoaDon() {
             hoaDons = new HoaDon[50];
             DateTime dt1 = new DateTime(2021, 12, 22, 9, 39, 25);
             hoaDons[0] = new HoaDon(100, dt1, 000001, 0001, 0000001);
@@ -193,8 +182,7 @@ namespace QLCHDoDienTu
             DateTime dt11 = new DateTime(2021, 2, 8, 4, 08, 14);
             hoaDons[10] = new HoaDon(110, dt11, 000007, 0002, 0000003);
         }
-        public static void taoDSChiTietHoaDon()
-        {
+        public static void taoDSChiTietHoaDon() {
             chiTietHoaDons = new ChiTietHoaDon[52];
             chiTietHoaDons[0] = new ChiTietHoaDon(100, 07, 2, 10);
             chiTietHoaDons[1] = new ChiTietHoaDon(100, 01, 1, 10);
@@ -250,52 +238,45 @@ namespace QLCHDoDienTu
             chiTietHoaDons[51] = new ChiTietHoaDon(110, 12, 16, 40);
         }
         // LINQ 1
-        public static void hienTatCaLoaiHang()
-        {
+        public static void hienTatCaLoaiHang() {
             var dssanpham_loaihang = loaiHangs.Select(lh => new { lh.IDLoaiHang, lh.TenLoaiHang });
-            foreach (var loha in dssanpham_loaihang)
-            {
+            foreach (var loha in dssanpham_loaihang) {
                 Console.WriteLine("{0}-{1}", loha.IDLoaiHang, loha.TenLoaiHang);
             }
         }
-        public static void hienTatCaSanPham()
-       {
-           var dsloaihang_sanpham = sanPhams.Select(sp => new { sp.IDSanPham, sp.TenSanPham, sp.DonGia, sp.ThoiHanBaoHanh, sp.NamSanXuat, sp.IDNhaCungCap, sp.IDLoaiHang });
-           foreach (var saph in dsloaihang_sanpham)
-           {
-               Console.WriteLine("{0}-{1}", saph.IDSanPham, saph.TenSanPham, saph.DonGia, saph.ThoiHanBaoHanh, saph.NamSanXuat, saph.IDNhaCungCap, saph.IDLoaiHang);
-           }
-       }
-        public static void hienTatCaKhachHang()
-        {
+        public static void hienTatCaSanPham() {
+            var dsloaihang_sanpham = sanPhams.Select(sp => new { sp.IDSanPham, sp.TenSanPham, sp.DonGia, sp.ThoiHanBaoHanh, sp.NamSanXuat, sp.IDNhaCungCap, sp.IDLoaiHang });
+            foreach (var saph in dsloaihang_sanpham) {
+                Console.WriteLine("{0}-{1}", saph.IDSanPham, saph.TenSanPham, saph.DonGia, saph.ThoiHanBaoHanh, saph.NamSanXuat, saph.IDNhaCungCap, saph.IDLoaiHang);
+            }
+        }
+        public static void hienTatCaKhachHang() {
             var dshoadon_khachhang = khachHangs.Select(kh => new { kh.IDKhachHang, kh.TenKhachHang, kh.GioiTinh, kh.NgaySinh, kh.SDT, kh.Email, kh.DiaChi });
-            foreach (var khha in dshoadon_khachhang)
-            {
+            foreach (var khha in dshoadon_khachhang) {
                 Console.WriteLine("{0}-{1}-{2}-{3}-{4}-{5}-{6}", khha.IDKhachHang, khha.TenKhachHang, khha.GioiTinh, khha.NgaySinh, khha.SDT, khha.Email, khha.DiaChi);
             }
         }
-        public static void hienTatCaThanNhan()
-        {
+        public static void hienTatCaThanNhan() {
             var dsnhanvien_thannhan = thanNhans.Select(tn => new { tn.IDThanNhan, tn.TenThanNhan, tn.QuanHe, tn.GioiTinh, tn.NgaySinh, tn.IDNhanVien });
-            foreach (var thnh in dsnhanvien_thannhan)
-            {
+            foreach (var thnh in dsnhanvien_thannhan) {
                 Console.WriteLine("{0}-{1}-{2}-{3}-{4}-{5}", thnh.IDThanNhan, thnh.TenThanNhan, thnh.QuanHe, thnh.GioiTinh, thnh.NgaySinh, thnh.IDNhanVien);
             }
         }
 
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             taoDSLoaiHang();
             taoDSSanPham();
             taoDSKhachHang();
             taoDSThanNhan();
-            hienTatCaLoaiHang();
-            hienTatCaSanPham();
-            hienTatCaKhachHang();
-            hienTatCaThanNhan();
+            //hienTatCaLoaiHang();
+            //hienTatCaSanPham();
+            //hienTatCaKhachHang();
+            //hienTatCaThanNhan();
+
+            var query = chiTietHoaDons.Select(n => n); // <== Lỗi
+            //var query = nhaCungCaps.Select(n => n); // <== Sau khi chuyển qua List<NhaCungCap> thì hết lỗi
             Console.ReadKey();
-            
-        }
+
         }
     }
-
+}
