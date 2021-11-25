@@ -1,0 +1,7 @@
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.exe.config
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.exe
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.pdb
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.csprojAssemblyReference.cache
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.exe
+C:\Users\ASUS\Downloads\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.pdb
