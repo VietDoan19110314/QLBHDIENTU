@@ -12,3 +12,10 @@ D:\OneDrive\src\Cs\OOP Final\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDien
 D:\OneDrive\src\Cs\OOP Final\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.csproj.CoreCompileInputs.cache
 D:\OneDrive\src\Cs\OOP Final\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.exe
 D:\OneDrive\src\Cs\OOP Final\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.pdb
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.exe.config
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.exe
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\bin\Debug\QLCHDoDienTu.pdb
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.csprojAssemblyReference.cache
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.exe
+C:\Users\ASUS\qlbhdodientu\changes\QLBHDIENTU\QLCHDoDienTu-master\obj\Debug\QLCHDoDienTu.pdb
