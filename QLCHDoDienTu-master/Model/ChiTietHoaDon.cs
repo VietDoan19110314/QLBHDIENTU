@@ -17,9 +17,9 @@ namespace QLCHDoDienTu {
 			this.SoLuong = SoLuong_;
 			this.GiamGia = GiamGia_;
 		}
-        //		//liên kết 1-1
-        //		public HoaDon HOADON { get; set; }
+        //liên kết 1-1
+        public HoaDon HOADON { get; set; }
         //		//liên kết 1-n
-        //		public ICollection<SanPham> dssanpham_chitiethoadon { get; set; }
+        public ICollection<SanPham> dssanpham_chitiethoadon { get; set; }
     }
 }

@@ -240,61 +240,102 @@ namespace QLCHDoDienTu
             chiTietHoaDons.Add(new ChiTietHoaDon(110, 12, 16, 40));
         }
         // LINQ 1
-        public static void hienTatCaLoaiHang()
+        // Đoàn Quốc việt 19110314
+        // Câu 1: Xuất ra thông tin các cửa hàng chỉ bán điện thoại và laptop
+        public static void Cau1()
         {
-            var dssanpham_loaihang = loaiHangs.Select(lh => new { lh.IDLoaiHang, lh.TenLoaiHang });
-            foreach (var loha in dssanpham_loaihang)
+            var onlyPhoneAndLaps =
+                from ch in cuaHangs
+                join k in khos on ch.IDCuaHang equals k.IDCuaHang
+                join sp in sanPhams on k.IDSanPham equals sp.IDSanPham
+                where sp.IDSanPham >= 1 && sp.IDSanPham <= 10
+                group ch by new { ch.IDCuaHang, ch.DiaChi, ch.SDT, ch.Email } into q
+                select new { IDCuahang = q.Key.IDCuaHang, Diachi = q.Key.DiaChi, SoDienThoai = q.Key.SDT, Email = q.Key.Email };
+            Console.WriteLine("Bài làm của Đoàn Quốc Việt, mssv: 19110314");
+            Console.WriteLine("---------------------------------------------------------------------");
+            Console.WriteLine("Câu 1: Xuất ra thông tin các cửa hàng chỉ bán điện thoại và laptop");
+            foreach (var onlyPhoneAndLap in onlyPhoneAndLaps)
             {
-                Console.WriteLine("{0}-{1}", loha.IDLoaiHang, loha.TenLoaiHang);
+                Console.WriteLine("Cửa hàng có ID:{0}, địa chỉ: {1}, số điện thoại: {2}, email: {3}", onlyPhoneAndLap.IDCuahang, onlyPhoneAndLap.Diachi, onlyPhoneAndLap.SoDienThoai, onlyPhoneAndLap.Email);
             }
-        }
-        public static void hienTatCaSanPham()
-        {
-            var dsloaihang_sanpham = sanPhams.Select(sp => new { sp.IDSanPham, sp.TenSanPham, sp.DonGia, sp.ThoiHanBaoHanh, sp.NamSanXuat, sp.IDNhaCungCap, sp.IDLoaiHang });
-            foreach (var saph in dsloaihang_sanpham)
-            {
-                Console.WriteLine("{0}-{1}", saph.IDSanPham, saph.TenSanPham, saph.DonGia, saph.ThoiHanBaoHanh, saph.NamSanXuat, saph.IDNhaCungCap, saph.IDLoaiHang);
-            }
-        }
-        public static void hienTatCaKhachHang()
-        {
-            var dshoadon_khachhang = khachHangs.Select(kh => new { kh.IDKhachHang, kh.TenKhachHang, kh.GioiTinh, kh.NgaySinh, kh.SDT, kh.Email, kh.DiaChi });
-            foreach (var khha in dshoadon_khachhang)
-            {
-                Console.WriteLine("{0}-{1}-{2}-{3}-{4}-{5}-{6}", khha.IDKhachHang, khha.TenKhachHang, khha.GioiTinh, khha.NgaySinh, khha.SDT, khha.Email, khha.DiaChi);
-            }
-        }
-        public static void hienTatCaThanNhan()
-        {
-            var dsnhanvien_thannhan = thanNhans.Select(tn => new { tn.IDThanNhan, tn.TenThanNhan, tn.QuanHe, tn.GioiTinh, tn.NgaySinh, tn.IDNhanVien });
-            foreach (var thnh in dsnhanvien_thannhan)
-            {
-                Console.WriteLine("{0}-{1}-{2}-{3}-{4}-{5}", thnh.IDThanNhan, thnh.TenThanNhan, thnh.QuanHe, thnh.GioiTinh, thnh.NgaySinh, thnh.IDNhanVien);
-            }
-        }
-        public static void hienTatCaChiTietHoaDon()
-        {
-            var dschitiethoadon = chiTietHoaDons.Select(cthd => new { cthd.IDHoaDon, cthd.IDSanPham, cthd.SoLuong, cthd.GiamGia });
-            foreach (var chon in dschitiethoadon)
-            {
-                Console.WriteLine("{0}-{1}-{2}-{3}", chon.IDHoaDon, chon.IDSanPham, chon.SoLuong, chon.GiamGia);
-            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
 
+        // Câu 2: Xuất ra thông tin người thân của nhân viên có lương cao nhất
+        public static void Cau2()
+        {
+            var ngThanOfNVLuongCaoNhats =
+                from tn in thanNhans
+                join nv in nhanViens on tn.IDNhanVien equals nv.IDNhanVien
+                where nv.LuongThang == (from b in nhanViens
+                                        select b.LuongThang).Max()
+                select new { TenThanNhan = tn.TenThanNhan, QuanHe = tn.QuanHe, GioiTinh = tn.GioiTinh, NgaySinh = tn.NgaySinh, TenNhanVien = nv.TenNhanVien };
+            Console.WriteLine("Câu 2: Xuất ra thông tin người thân của nhân viên có lương cao nhất");
+            foreach (var ngThanOfNVLuongCaoNhat in ngThanOfNVLuongCaoNhats)
+            {
+                Console.WriteLine("Nhân viên có lương tháng cao nhất tên: {0} có thân nhân: {1}, có quan hệ: {2} với nhân viên, giới tính: {3}, ngày sinh: {4}", ngThanOfNVLuongCaoNhat.TenNhanVien, ngThanOfNVLuongCaoNhat.TenThanNhan, ngThanOfNVLuongCaoNhat.QuanHe, ngThanOfNVLuongCaoNhat.GioiTinh, ngThanOfNVLuongCaoNhat.NgaySinh);
+            }
+
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+
+        // câu 3: Sắp xếp thông tin các sản phẩm có giá giảm dần
+        public static void Cau3()
+        {
+            var sapXepGiams =
+                from sp in sanPhams
+                orderby sp.DonGia descending
+                select sp;
+            Console.WriteLine("Câu 3: Sắp xếp thông tin các sản phẩm có giá giảm dần");
+            foreach (var sapXepGiam in sapXepGiams)
+            {
+                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1}", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
+            }
+
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+
+        // câu 4: Xuất ra mã và tên sản phẩm được cung cấp bởi nhà cung cấp Dien Tu VIP và nhà cung cấp Hoai Phong
+        public static void Cau4()
+        {
+            var tenMH1s =
+                from ncc in nhaCungCaps
+                join sp in sanPhams on ncc.IDNhaCungCap equals sp.IDNhaCungCap
+                where ncc.TenNhaCungCap == "Nha cung cap Dien Tu VIP"
+                select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham };
+            var tenMH2s =
+                from ncc in nhaCungCaps
+                join sp in sanPhams on ncc.IDNhaCungCap equals sp.IDNhaCungCap
+                where ncc.TenNhaCungCap == "Nha cung cap Hoai Phong"
+                select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham };
+            var kq = tenMH1s.Concat(tenMH2s);
+            Console.WriteLine("Câu 4: Xuất ra mã và tên các sản phẩm được cung cấp bởi nhà cung cấp Dien Tu VIP và nhà cung cấp Hoai Phong");
+            foreach (var a in kq)
+            {
+                Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}", a.MaSanPham, a.TenSanPham);
+            }
+
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
         static void Main(string[] args)
         {
-            //taoDSLoaiHang();
-            //taoDSSanPham();
-            //taoDSKhachHang();
-            //taoDSThanNhan();
+            Console.OutputEncoding = Encoding.UTF8;
+            taoDSLoaiHang();
+            taoDSSanPham();
+            taoDSKhachHang();
+            taoDSThanNhan();
             taoDSChiTietHoaDon();
-            //hienTatCaLoaiHang();
-            //hienTatCaSanPham();
-            //hienTatCaKhachHang();
-            //hienTatCaThanNhan();
-            hienTatCaChiTietHoaDon();
-            var query = chiTietHoaDons.Select(n => n); // <== Lỗi
-            //var query = nhaCungCaps.Select(n => n); // <== Sau khi chuyển qua List<NhaCungCap> thì hết lỗi
+            taoDSCuaHang();
+            taoDSHoaDon();
+            taoDSKho();
+            taoDSNhaCungCap();
+            taoDSNhanVien();
+
+            // Phần bài của Đoàn Quốc Việt
+            Cau1();
+            Cau2();
+            Cau3();
+            Cau4();
             Console.ReadKey();
 
         }

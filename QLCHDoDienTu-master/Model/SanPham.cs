@@ -24,10 +24,10 @@ namespace QLCHDoDienTu {
 			this.IDLoaiHang = IDLoaiHang_;
 		}
 		//liên kết 1-1
-		//public LoaiHang LOAIHANG { get; set; }
-		//public ChiTietHoaDon CHITIETHOADON { get; set; }
-		//public Kho KHO { get; set; }
-		////liên kết 1-n
-		//public ICollection<NhaCungCap> dsnhacungcap_sanpham { get; set; }
+		public LoaiHang LOAIHANG { get; set; }
+		public ChiTietHoaDon CHITIETHOADON { get; set; }
+		public Kho KHO { get; set; }
+		//liên kết 1-n
+		public ICollection<NhaCungCap> dsnhacungcap_sanpham { get; set; }
 	}
 }

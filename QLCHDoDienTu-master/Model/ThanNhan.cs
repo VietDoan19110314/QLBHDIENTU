@@ -22,6 +22,6 @@ namespace QLCHDoDienTu {
 			this.IDNhanVien = IDNhanVien_;
 		}
 		// liên kết 1-n
-		//public ICollection<NhanVien> dsnhanvien_thannhan { get; set; }
+		public ICollection<NhanVien> dsnhanvien_thannhan { get; set; }
 	}
 }

@@ -14,6 +14,6 @@ namespace QLCHDoDienTu {
 			this.TenLoaiHang = TenLoaiHang_;
 		}
 		// plural liên kết 1-n
-		//public ICollection<SanPham> dssanpham_loaihang { get; set; }
+		public ICollection<SanPham> dssanpham_loaihang { get; set; }
 	}
 }
