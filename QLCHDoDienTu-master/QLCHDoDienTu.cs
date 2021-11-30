@@ -260,7 +260,40 @@ namespace QLCHDoDienTu
             }
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
-
+        // Câu 1 dùng Lambda
+        public static void Cau1Lambda()
+        {
+            var onlyPhoneAndLapCuahangs =
+                sanPhams
+                .Join(
+                    khos,
+                    i => i.IDSanPham,
+                    j => j.IDSanPham,
+                    (i, j) => new
+                    {
+                        MaCuaHang = j.IDCuaHang,
+                        MaSanPham = j.IDSanPham
+                    })
+                .Join(
+                    cuaHangs,
+                    i => i.MaCuaHang,
+                    j => j.IDCuaHang,
+                    (i, j) => new
+                    {
+                        MaSanPham = i.MaSanPham,
+                        MaCuaHang = i.MaCuaHang,
+                        DiaChi = j.DiaChi,
+                        SDT = j.SDT,
+                        Email = j.Email
+                    })
+                .Where(k => (k.MaSanPham >= 1 && k.MaSanPham <= 10))
+                .Select(i => new { i.MaCuaHang, i.DiaChi, i.SDT, i.Email }).Distinct();
+            foreach (var onlyPhoneAndLapCuahang in onlyPhoneAndLapCuahangs)
+            {
+                Console.WriteLine("Cửa hàng có ID:{0}, địa chỉ: {1}, số điện thoại: {2}, email: {3}", onlyPhoneAndLapCuahang.MaCuaHang, onlyPhoneAndLapCuahang.DiaChi, onlyPhoneAndLapCuahang.SDT, onlyPhoneAndLapCuahang.Email);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
         // Câu 2: Xuất ra thông tin người thân của nhân viên có lương cao nhất
         public static void Cau2()
         {
@@ -279,6 +312,32 @@ namespace QLCHDoDienTu
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
 
+        // Câu 2 dùng Lambda
+        public static void Cau2Lambda()
+        {
+            var ngThanOfNVLuongCaoNhats =
+                nhanViens
+                .Join(
+                    thanNhans,
+                    i => i.IDNhanVien,
+                    j => j.IDNhanVien,
+                    (i, j) => new
+                    {
+                        TenThanNhan = j.TenThanNhan,
+                        QuanHe = j.QuanHe,
+                        GioiTinh = j.GioiTinh,
+                        NgaySinh = j.NgaySinh,
+                        TenNhanVien = i.TenNhanVien,
+                        LuongThang = i.LuongThang
+                    })
+                .Where(k => k.LuongThang == nhanViens.Select(a => a.LuongThang).Max())
+                .Select(i => new { i.TenNhanVien, i.TenThanNhan, i.QuanHe, i.GioiTinh, i.NgaySinh }).Distinct();
+            foreach (var ngThanOfNVLuongCaoNhat in ngThanOfNVLuongCaoNhats)
+            {
+                Console.WriteLine("Nhân viên có lương tháng cao nhất tên: {0} có thân nhân: {1}, có quan hệ: {2} với nhân viên, giới tính: {3}, ngày sinh: {4}", ngThanOfNVLuongCaoNhat.TenNhanVien, ngThanOfNVLuongCaoNhat.TenThanNhan, ngThanOfNVLuongCaoNhat.QuanHe, ngThanOfNVLuongCaoNhat.GioiTinh, ngThanOfNVLuongCaoNhat.NgaySinh);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
         // câu 3: Sắp xếp thông tin các sản phẩm có giá giảm dần
         public static void Cau3()
         {
@@ -294,7 +353,19 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
-
+        // Câu 3 dùng Lambda
+        public static void Cau3Lambda()
+        {
+            var sapXepGiams =
+                sanPhams
+                .OrderByDescending(sp => sp.DonGia)
+                .Select(i => new { i.TenSanPham, i.DonGia });
+            foreach (var sapXepGiam in sapXepGiams)
+            {
+                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1}", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
         // câu 4: Xuất ra mã và tên sản phẩm được cung cấp bởi nhà cung cấp Dien Tu VIP và nhà cung cấp Hoai Phong
         public static void Cau4()
         {
@@ -317,6 +388,120 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
+        // Câu 4 dùng Lambda
+        public static void Cau4Lambda()
+        {
+            var tenMH1s =
+                nhaCungCaps
+                .Join(
+                     sanPhams,
+                    i => i.IDNhaCungCap,
+                    j => j.IDNhaCungCap,
+                    (i, j) => new
+                    {
+                        NhaCungCap = i.TenNhaCungCap,
+                        MaSanPham = j.IDSanPham,
+                        TenSanPham = j.TenSanPham
+                    })
+                .Select(i => new { i.MaSanPham, i.TenSanPham, i.NhaCungCap })
+                .Where(k => k.NhaCungCap == "Nha cung cap Dien Tu VIP");
+
+            var tenMH2s =
+                nhaCungCaps
+                .Join(
+                     sanPhams,
+                    i => i.IDNhaCungCap,
+                    j => j.IDNhaCungCap,
+                    (i, j) => new
+                    {
+                        NhaCungCap = i.TenNhaCungCap,
+                        MaSanPham = j.IDSanPham,
+                        TenSanPham = j.TenSanPham
+                    })
+                .Select(i => new { i.MaSanPham, i.TenSanPham, i.NhaCungCap })
+                .Where(k => k.NhaCungCap == "Nha cung cap Hoai Phong");
+                 
+            var kq = tenMH1s.Concat(tenMH2s);
+            foreach (var a in kq)
+            {
+                Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}", a.MaSanPham, a.TenSanPham);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+        // câu 5: Xuất ra thông tin các loại hàng mà cửa hàng có mã 0000003 bán
+        public static void Cau5()
+        {
+            var LHCuaHang3s =
+                (from lh in loaiHangs
+                 join sp in sanPhams on lh.IDLoaiHang equals sp.IDLoaiHang
+                 join k in khos on sp.IDSanPham equals k.IDSanPham
+                 join ch in cuaHangs on k.IDCuaHang equals ch.IDCuaHang
+                 where ch.IDCuaHang == 0000003
+                 select new { MaLoaiHang = lh.IDLoaiHang, TenLoaiHang = lh.TenLoaiHang }).Distinct();
+            Console.WriteLine("Câu 5: Xuất ra thông tin các loại hàng mà cửa hàng có mã 0000003 bán");
+            foreach (var a in LHCuaHang3s)
+            {
+                Console.WriteLine("Mã loại hàng: {0}, tên loại hàng: {1}", a.MaLoaiHang, a.TenLoaiHang);
+            }
+
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+        // Câu 5 dùng lambda
+        public static void Cau5Lambda()
+        {
+            var TatCaLHCuahang3s =
+                cuaHangs
+                .Join(
+                    khos,
+                    i => i.IDCuaHang,
+                    j => j.IDCuaHang,
+                    (i, j) => new
+                    {
+                        MaCuaHang = j.IDCuaHang,
+                        MaSanPham = j.IDSanPham
+                    })
+                .Join(
+                    sanPhams,
+                    i => i.MaSanPham,
+                    j => j.IDSanPham,
+                    (i, j) => new
+                    {
+                        MaCuaHang = i.MaCuaHang,
+                        MaSanPham = j.IDSanPham,
+                        MaLoaiHang = j.IDLoaiHang
+                    })
+                .Join(
+                    loaiHangs,
+                    i => i.MaLoaiHang,
+                    j => j.IDLoaiHang,
+                    (i, j) => new
+                    {
+                        MaCuaHang = i.MaCuaHang,
+                        MaLoaiHang = j.IDLoaiHang,
+                        TenLoaiHang = j.TenLoaiHang
+                    })
+                .Where(k => k.MaCuaHang == 0000003)
+                .Select(i => new { i.MaLoaiHang, i.TenLoaiHang }).Distinct();
+            foreach (var TatCaLHCuahang3 in TatCaLHCuahang3s)
+            {
+                Console.WriteLine("Mã loại hàng: {0}, tên loại hàng: {1}", TatCaLHCuahang3.MaLoaiHang, TatCaLHCuahang3.TenLoaiHang);
+            } 
+        }           
+        // Câu 6: Tìm tên sản phẩm bán chậm nhất của cửa hàng 0000002 (ít người mua nhất)
+        public static void Cau6()
+        {
+            // Bước 1: Tìm tên tất cả các sản phẩm mà cửa hàng mã 0000002 bán
+            var AllCuaHang2s =
+                 from sp in sanPhams
+                 join k in khos on sp.IDSanPham equals k.IDSanPham
+                 join ch in cuaHangs on k.IDCuaHang equals ch.IDCuaHang
+                 where ch.IDCuaHang == 0000002
+                 select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham };
+            Console.WriteLine("Câu 5: Xuất ra thông tin các loại hàng mà cửa hàng có mã 0000003 bán");
+           
+
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -332,10 +517,16 @@ namespace QLCHDoDienTu
             taoDSNhanVien();
 
             // Phần bài của Đoàn Quốc Việt
-            Cau1();
-            Cau2();
-            Cau3();
+            //Cau1();
+            //Cau1Lambda();
+            //Cau2();
+            //Cau2Lambda();
+            //Cau3();
+            //Cau3Lambda();
             Cau4();
+            Cau4Lambda();
+            //Cau5();
+            //Cau5Lambda();
             Console.ReadKey();
 
         }

@@ -18,8 +18,8 @@ namespace QLCHDoDienTu {
 			this.GiamGia = GiamGia_;
 		}
         //liên kết 1-1
-        public HoaDon HOADON { get; set; }
+        //public HoaDon HOADON { get; set; }
         //		//liên kết 1-n
-        public ICollection<SanPham> dssanpham_chitiethoadon { get; set; }
+        //public ICollection<SanPham> dssanpham_chitiethoadon { get; set; }
     }
 }

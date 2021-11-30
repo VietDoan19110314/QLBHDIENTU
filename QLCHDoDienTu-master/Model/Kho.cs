@@ -16,8 +16,8 @@ namespace QLCHDoDienTu {
 			this.SoLuong = SoLuong_;
 		}
 		// liên kết 1-1
-		public CuaHang CUAHANG { get; set; }
+		/*public CuaHang CUAHANG { get; set; }
 		//liên kết 1-n
-		public ICollection<SanPham> dssanpham_kho { get; set; }
+		public ICollection<SanPham> dssanpham_kho { get; set; }*/
 	}
 }

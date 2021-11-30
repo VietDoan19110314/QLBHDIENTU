@@ -26,10 +26,10 @@ namespace QLCHDoDienTu {
 			this.IDCuaHang = IDCuaHang_;
 		}
 		//liên kết 1-1
-		public CuaHang CUAHANG { get; set; }
+		/*public CuaHang CUAHANG { get; set; }
 		//liên kết 1-n
 		public ICollection<ThanNhan> dsthannhan_nhanvien { get; set; }
-		public ICollection<HoaDon> dshoadon_nhanvien { get; set; }
+		public ICollection<HoaDon> dshoadon_nhanvien { get; set; }*/
 
 	}
 }
