@@ -11,10 +11,8 @@ namespace QLCHDoDienTu {
 		public decimal DonGia { get; set; }
 		public int ThoiHanBaoHanh { get; set; }
 		public int NamSanXuat { get; set; }
-
 		public NhaCungCap NhaCungCap { get; set; }
 		public LoaiHang LoaiHang { get; set; }
-
 		public SanPham(int IDSanPham_, string TenSanPham_, decimal DonGia_, int ThoiHanBaoHanh_, int NamSanXuat_, NhaCungCap NhaCungCap_, LoaiHang LoaiHang_) {
 			this.IDSanPham = IDSanPham_;
 			this.TenSanPham = TenSanPham_;
@@ -24,7 +22,5 @@ namespace QLCHDoDienTu {
 			this.NhaCungCap = NhaCungCap_;
 			this.LoaiHang = LoaiHang_;
 		}
-		
-
 	}
 }

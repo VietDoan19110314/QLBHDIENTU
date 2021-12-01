@@ -36,7 +36,7 @@ namespace QLCHDoDienTu
         }
         public static void taoDSSanPham()
         {
-            sanPhams.Add(new SanPham(01, "Laptop Asus", 16000000, 1, 2021, null, null)); //nhaCungCaps[0], loaiHangs[0]
+            sanPhams.Add(new SanPham(01, "Laptop Asus", 16000000, 1, 2021, nhaCungCaps[0], loaiHangs[0]));
             sanPhams.Add(new SanPham(02, "Macbook", 42900000, 2, 2021, nhaCungCaps[0], loaiHangs[0]));
             sanPhams.Add(new SanPham(03, "Laptop Dell", 10999000, 2, 2020, nhaCungCaps[1], loaiHangs[0]));
             sanPhams.Add(new SanPham(04, "Laptop Lenovo", 18699000, 2, 2021, nhaCungCaps[1], loaiHangs[0]));
@@ -420,7 +420,7 @@ namespace QLCHDoDienTu
         //            })
         //        .Select(i => new { i.MaSanPham, i.TenSanPham, i.NhaCungCap })
         //        .Where(k => k.NhaCungCap == "Nha cung cap Hoai Phong");
-                 
+
         //    var kq = tenMH1s.Concat(tenMH2s);
         //    foreach (var a in kq)
         //    {
@@ -498,7 +498,7 @@ namespace QLCHDoDienTu
         //         where ch.IDCuaHang == 0000002
         //         select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham };
         //    Console.WriteLine("Câu 5: Xuất ra thông tin các loại hàng mà cửa hàng có mã 0000003 bán");
-           
+
 
         //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
         //}
@@ -705,10 +705,10 @@ namespace QLCHDoDienTu
             Console.OutputEncoding = Encoding.UTF8;
             taoDSLoaiHang();
             taoDSNhaCungCap();
-            taoDSSanPham();
-            taoDSCuaHang();
-            taoDSNhanVien();
             taoDSKhachHang();
+            taoDSCuaHang();
+            taoDSSanPham();
+            taoDSNhanVien();
             taoDSThanNhan();
             taoDSHoaDon();
             taoDSKho();
@@ -728,6 +728,8 @@ namespace QLCHDoDienTu
             //Cau5Lambda();
 
             //Cau11();
+
+            //Cau12();
             Console.ReadKey();
 
         }
