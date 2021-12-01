@@ -20,9 +20,9 @@ namespace QLCHDoDienTu {
 			this.CuaHang = CuaHang_;
 		}
         // liên kết 1-1
-        public KhachHang KHACHHANG { get; set; }
+        /*public KhachHang KHACHHANG { get; set; }
         public NhanVien NHANVIEN { get; set; }
         public CuaHang CUAHANG { get; set; }
-        public ChiTietHoaDon CHITIETHOADON { get; set; }
+        public ChiTietHoaDon CHITIETHOADON { get; set; }*/
     }
 }
