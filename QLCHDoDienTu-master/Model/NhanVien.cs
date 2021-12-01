@@ -13,9 +13,9 @@ namespace QLCHDoDienTu {
 		public string DiaChi { get; set; }
 		public DateTime NgayBatDauLam { get; set; }
 		public decimal LuongThang { get; set; }
-		public int IDCuaHang { get; set; }
+		public CuaHang CuaHang { get; set; }
 
-		public NhanVien(int IDNhanVien_, string TenNhanVien_, string GioiTinh_, DateTime NgaySinh_, string DiaChi_, DateTime NgayBatDauLam_, decimal LuongThang_, int IDCuaHang_) {
+		public NhanVien(int IDNhanVien_, string TenNhanVien_, string GioiTinh_, DateTime NgaySinh_, string DiaChi_, DateTime NgayBatDauLam_, decimal LuongThang_, CuaHang CuaHang_) {
 			this.IDNhanVien = IDNhanVien_;
 			this.TenNhanVien = TenNhanVien_;
 			this.GioiTinh = GioiTinh_;
@@ -23,13 +23,7 @@ namespace QLCHDoDienTu {
 			this.DiaChi = DiaChi_;
 			this.NgayBatDauLam = NgayBatDauLam_;
 			this.LuongThang = LuongThang_;
-			this.IDCuaHang = IDCuaHang_;
+			this.CuaHang = CuaHang_;
 		}
-		//liên kết 1-1
-		public CuaHang CUAHANG { get; set; }
-		//liên kết 1-n
-		public ICollection<ThanNhan> dsthannhan_nhanvien { get; set; }
-		public ICollection<HoaDon> dshoadon_nhanvien { get; set; }
-
 	}
 }

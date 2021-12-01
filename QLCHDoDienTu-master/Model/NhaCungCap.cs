@@ -19,6 +19,5 @@ namespace QLCHDoDienTu {
 			this.SDT = SDT_;
 			this.Email = Email_;
 		}
-		public ICollection<SanPham> dssanpham_nhacungcap { get; set; }
 	}
 }

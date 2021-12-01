@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace QLCHDoDienTu {
 	public class Kho {
-		public int IDCuaHang { get; set; }
-		public int IDSanPham { get; set; }
+		public CuaHang CuaHang { get; set; }
+		public SanPham SanPham { get; set; }
 		public int SoLuong { get; set; }
 
-		public Kho(int IDCuaHang_, int IDSanPham_, int SoLuong_) {
-			this.IDCuaHang = IDCuaHang_;
-			this.IDSanPham = IDSanPham_;
+		public Kho(CuaHang CuaHang_, SanPham SanPham_, int SoLuong_) {
+			this.CuaHang = CuaHang_;
+			this.SanPham = SanPham_;
 			this.SoLuong = SoLuong_;
 		}
-		// liên kết 1-1
-		public CuaHang CUAHANG { get; set; }
-		//liên kết 1-n
-		public ICollection<SanPham> dssanpham_kho { get; set; }
 	}
 }

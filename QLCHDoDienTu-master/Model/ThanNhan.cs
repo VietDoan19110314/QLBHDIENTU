@@ -11,17 +11,15 @@ namespace QLCHDoDienTu {
 		public string QuanHe { get; set; }
 		public string GioiTinh { get; set; }
 		public DateTime NgaySinh { get; set; }
-		public int IDNhanVien { get; set; }
+		public NhanVien NhanVien { get; set; }
 
-		public ThanNhan(int IDThanNhan_, string TenThanNhan_, string QuanHe_, string GioiTinh_, DateTime NgaySinh_, int IDNhanVien_) {
+		public ThanNhan(int IDThanNhan_, string TenThanNhan_, string QuanHe_, string GioiTinh_, DateTime NgaySinh_, NhanVien NhanVien_) {
 			this.IDThanNhan = IDThanNhan_;
 			this.TenThanNhan = TenThanNhan_;
 			this.QuanHe = QuanHe_;
 			this.GioiTinh = GioiTinh_;
 			this.NgaySinh = NgaySinh_;
-			this.IDNhanVien = IDNhanVien_;
+			this.NhanVien = NhanVien_;
 		}
-		// liên kết 1-n
-		public ICollection<NhanVien> dsnhanvien_thannhan { get; set; }
 	}
 }

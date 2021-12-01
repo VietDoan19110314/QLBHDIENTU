@@ -8,16 +8,16 @@ namespace QLCHDoDienTu {
 	public class HoaDon {
 		public int IDHoaDon { get; set; }
 		public DateTime NgayLapHoaDon { get; set; }
-		public int IDNhanVien { get; set; }
-		public int IDKhachHang { get; set; }
-		public int IDCuaHang { get; set; }
+		public NhanVien NhanVien { get; set; }
+		public KhachHang KhachHang { get; set; }
+		public CuaHang CuaHang { get; set; }
 
-		public HoaDon(int IDHoaDon_, DateTime NgayLapHoaDon_, int IDNhanVien_, int IDKhachHang_, int IDCuaHang_) {
+		public HoaDon(int IDHoaDon_, DateTime NgayLapHoaDon_, NhanVien NhanVien_, KhachHang KhachHang_, CuaHang CuaHang_) {
 			this.IDHoaDon = IDHoaDon_;
 			this.NgayLapHoaDon = NgayLapHoaDon_;
-			this.IDNhanVien = IDNhanVien_;
-			this.IDKhachHang = IDKhachHang_;
-			this.IDCuaHang = IDCuaHang_;
+			this.NhanVien = NhanVien_;
+			this.KhachHang = KhachHang_;
+			this.CuaHang = CuaHang_;
 		}
         // liên kết 1-1
         public KhachHang KHACHHANG { get; set; }
