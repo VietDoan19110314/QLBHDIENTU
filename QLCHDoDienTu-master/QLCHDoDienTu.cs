@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace QLCHDoDienTu
 {
@@ -17,8 +18,8 @@ namespace QLCHDoDienTu
         static List<NhaCungCap> nhaCungCaps = new List<NhaCungCap>();
         static List<NhanVien> nhanViens = new List<NhanVien>();
         static List<SanPham> sanPhams = new List<SanPham>();
-
         static List<ThanNhan> thanNhans = new List<ThanNhan>();
+        static CultureInfo ci = new CultureInfo("vi-VN");
         public static void taoDSLoaiHang()
         {
             loaiHangs.Add(new LoaiHang(1, "Laptop"));
@@ -686,202 +687,402 @@ namespace QLCHDoDienTu
                 Console.WriteLine("Đó là nhân viên có mã: {0}, tên là: {1}, lương ban đầu: {2}, lương sau khi hạ: {3}", kq.MaNhanVien, kq.TenNhanVien, kq.LuongBanDau, kq.HaLuong);
             }
         }
-        //// ↓ ↓ ↓ Nguyen Thanh Viet's Section ↓ ↓ ↓
-        //// 11.	Thông tin các nhà cung cấp có sản phẩm máy giặt.
-        //public static void Cau11() {
+        // ↓ ↓ ↓ Nguyen Thanh Viet's Section ↓ ↓ ↓
+        // 11.	Thông tin các nhà cung cấp có sản phẩm máy giặt.
+        public static void Cau11(string tenLoaiHang) {
 
-        //    var query = from nc in nhaCungCaps
-        //                join sp in sanPhams
-        //                on nc.IDNhaCungCap equals sp.NhaCungCap.IDNhaCungCap
-        //                join lh in loaiHangs
-        //                on sp.LoaiHang.IDLoaiHang equals lh.IDLoaiHang
-        //                where lh.TenLoaiHang == "May giat"
-        //                select nc;
+            var query = from nc in nhaCungCaps
+                        join sp in sanPhams
+                        on nc.IDNhaCungCap equals sp.NhaCungCap.IDNhaCungCap
+                        join lh in loaiHangs
+                        on sp.LoaiHang.IDLoaiHang equals lh.IDLoaiHang
+                        where lh.TenLoaiHang == tenLoaiHang
+                        select nc;
 
-        //    foreach (var row in query.Distinct()) {
-        //        Console.WriteLine("{0} - {1} - {2} - {3} - {4}", row.IDNhaCungCap, row.TenNhaCungCap, row.DiaChi, row.SDT, row.Email);
-        //    }
+            Console.WriteLine("\n11. Thông tin các nhà cung cấp có sản phẩm {0}.", tenLoaiHang);
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in query.Distinct()) {
+                Console.WriteLine("ID: {0} | Ten NCC: {1} | SDT: {2} | Email: {3} | Dia Chi: {4}",
+                    n.IDNhaCungCap, n.TenNhaCungCap, n.SDT, n.Email, n.DiaChi);
+            }
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //// 11. lambda
-        //public static void Cau11_lambda() {
+        // 11. lambda
+        public static void Cau11_lambda(string tenLoaiHang) {
+            var result = nhaCungCaps
+               .Join(
+                  sanPhams,
+                  nc => nc.IDNhaCungCap,
+                  sp => sp.NhaCungCap.IDNhaCungCap,
+                  (nc, sp) =>
+                     new {
+                         NhaCungCap = nc,
+                         SanPham = sp
+                     }
+               )
+               .Join(
+                  loaiHangs,
+                  nc_sp => nc_sp.SanPham.LoaiHang.IDLoaiHang,
+                  lh => lh.IDLoaiHang,
+                  (nc_sp, lh) =>
+                     new {
+                         NhaCungCap_SanPham = nc_sp,
+                         LoaiHang = lh
+                     }
+               )
+               .Where(n => n.LoaiHang.TenLoaiHang == tenLoaiHang)
 
-        //}
+               .Select(n => n.NhaCungCap_SanPham.NhaCungCap);
 
-        //// 12. Thông tin sản phẩm là điện thoại có giá > 10tr, sắp xếp tăng dần theo giá thành
-        //public static void Cau12() {
+            Console.WriteLine("11. Viet bang lambda");
+            Console.WriteLine("---------------------------------------------------------------------");
+            result.Distinct().ToList().ForEach(n => Console.WriteLine("ID: {0} | Ten NCC: {1} | SDT: {2} | Email: {3} | Dia Chi: {4}",
+                n.IDNhaCungCap, n.TenNhaCungCap, n.SDT, n.Email, n.DiaChi));
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //    var query = from sp in sanPhams
-        //                join lh in loaiHangs
-        //                on sp.LoaiHang.IDLoaiHang equals lh.IDLoaiHang
-        //                where lh.TenLoaiHang == "Dien thoai di dong" && sp.DonGia > 1E7m
-        //                orderby sp.DonGia ascending
-        //                select sp;
+        // 12. Thông tin sản phẩm là điện thoại có giá > 10tr, sắp xếp tăng dần theo giá thành
+        public static void Cau12(string loaiHang, decimal giaTien) {
 
-        //    foreach (var row in query.Distinct()) {
-        //        Console.WriteLine("{0} - {1} - {2} - {3} - {4}", row.IDSanPham, row.TenSanPham, row.DonGia, row.ThoiHanBaoHanh, row.NamSanXuat);
-        //    }
+            var query = from sp in sanPhams
+                        join lh in loaiHangs
+                        on sp.LoaiHang.IDLoaiHang equals lh.IDLoaiHang
+                        where lh.TenLoaiHang == loaiHang && sp.DonGia > giaTien
+                        orderby sp.DonGia ascending
+                        select sp;
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+            Console.WriteLine("12. Thông tin sản phẩm là {0} có giá > {1}, sắp xếp tăng dần theo giá thành.", loaiHang, giaTien.ToString("C0", ci));
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in query.Distinct()) {
+                Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4}",
+                    n.IDSanPham, n.TenSanPham, n.DonGia.ToString("C0", ci), n.ThoiHanBaoHanh, n.NamSanXuat);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //// 12. lambda
-        //public static void Cau12_lambda() {
+        // 12. lambda
+        public static void Cau12_lambda(string loaiHang, decimal giaTien) {
+            var result = sanPhams
+                .Join(
+                    loaiHangs,
+                    sp => sp.LoaiHang.IDLoaiHang,
+                    lh => lh.IDLoaiHang,
+                    (sp, lh) =>
+                    new {
+                        SanPham = sp,
+                        LoaiHang = lh
+                    }
+                )
+                .Where(sp_lh => sp_lh.SanPham.DonGia > giaTien)
 
-        //}
+                .Where(sp_lh => sp_lh.LoaiHang.TenLoaiHang == loaiHang)
 
-        //// 13. Thông tin sản phẩm sắp hết (tổng số lượng trong các kho < 15 sp)
-        //public static void Cau13() {
+                .OrderBy(sp_lh => sp_lh.SanPham.DonGia)
 
-        //    var query = from sp in sanPhams
-        //                join k in khos
-        //                on sp.IDSanPham equals k.SanPham.IDSanPham
-        //                group k.SoLuong by new {
-        //                    sp.IDSanPham,
-        //                    sp.TenSanPham,
-        //                    sp.DonGia,
-        //                    sp.ThoiHanBaoHanh,
-        //                    sp.NamSanXuat
-        //                }
-        //                into gr
-        //                select gr;
+                .Select(sp_lh => sp_lh.SanPham);
 
-        //    var result = from q in query
-        //                 where q.Sum() < 15
-        //                 select q;
+            Console.WriteLine("12. Viet bang lambda.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            result.ToList().ForEach(n => Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4}",
+                n.IDSanPham, n.TenSanPham, n.DonGia.ToString("C0", ci), n.ThoiHanBaoHanh, n.NamSanXuat));
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //    foreach (var row in result) {
-        //        Console.WriteLine("{0} - {1} - {2} - {3} - {4} - {5}", row.Key.IDSanPham, row.Key.TenSanPham, row.Key.DonGia, row.Key.ThoiHanBaoHanh, row.Key.NamSanXuat, row.Sum());
-        //    }
+        // 13. Thông tin sản phẩm sắp hết (tổng số lượng trong các kho < 15 sp)
+        public static void Cau13(int nail) {
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
+            var query = from sp in sanPhams
+                        join k in khos
+                        on sp.IDSanPham equals k.SanPham.IDSanPham
+                        group k.SoLuong by new {
+                            sp.IDSanPham,
+                            sp.TenSanPham,
+                            sp.DonGia,
+                            sp.ThoiHanBaoHanh,
+                            sp.NamSanXuat
+                        }
+                        into gr
+                        select gr;
 
-        //}
+            var result = from q in query
+                         where q.Sum() < nail
+                         select q;
 
-        //// 13. lambda
-        //public static void Cau13_lambda() {
+            Console.WriteLine("13. Thông tin sản phẩm sắp hết (tổng số lượng trong các kho < {0} sp)", nail);
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in result) {
+                Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4} | Tong SL con trong Kho: {5}",
+                    n.Key.IDSanPham, n.Key.TenSanPham, n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat, n.Sum());
+            }
 
-        //}
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
 
-        //// 14. Thông tin 3 nhân viên có lương cao nhất
-        //public static void Cau14() {
+        }
 
-        //    var query = from nv in nhanViens
-        //                orderby nv.LuongThang descending
-        //                select nv;
+        // 13. lambda
+        public static void Cau13_lambda(int nail) {
+            var result = sanPhams
+               .Join(
+                  khos,
+                  sp => sp.IDSanPham,
+                  k => k.SanPham.IDSanPham,
+                  (sp, k) =>
+                     new {
+                         sp = sp,
+                         k = k
+                     }
+               )
+               .GroupBy(
+                  sp_k =>
+                     new {
+                         IDSanPham = sp_k.sp.IDSanPham,
+                         TenSanPham = sp_k.sp.TenSanPham,
+                         DonGia = sp_k.sp.DonGia,
+                         ThoiHanBaoHanh = sp_k.sp.ThoiHanBaoHanh,
+                         NamSanXuat = sp_k.sp.NamSanXuat
+                     },
+                  sp_k => sp_k.k.SoLuong
+               )
+               .Select(gr => gr)
 
-        //    var result = query.Take(3);
-        //    foreach (var row in result) {
-        //        Console.WriteLine("{0} - {1} - {2} - {3} - {4} - {5} - {6}", row.IDNhanVien, row.TenNhanVien, row.GioiTinh, row.NgaySinh.ToString("dd/MM/yyyy"), row.DiaChi, row.NgayBatDauLam.ToString("dd/MM/yyyy"), row.LuongThang);
-        //    }
+               .Where(gr => gr.Sum() < nail);
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+            Console.WriteLine("13. Viet bang lambda.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            result.ToList().ForEach(n => Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4} | Tong SL con trong Kho: {5}",
+                n.Key.IDSanPham, n.Key.TenSanPham, n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat, n.Sum()));
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //// 14. lambda
-        //public static void Cau14_lambda() {
+        // 14. Thông tin 3 nhân viên có lương cao nhất
+        public static void Cau14(int num) {
 
-        //}
+            var query = from nv in nhanViens
+                        orderby nv.LuongThang descending
+                        select nv;
 
-        //// 15. Thông tin các hoá đơn được lập sau từ tháng 5/2021 đến nay
-        //public static void Cau15() {
+            var result = query.Take(num);
 
-        //    var query = from hd in hoaDons
-        //                where DateTime.Compare(new DateTime(2021, 5, 1), hd.NgayLapHoaDon) < 0
-        //                join nv in nhanViens
-        //                on hd.NhanVien.IDNhanVien equals nv.IDNhanVien
-        //                join kh in khachHangs
-        //                on hd.KhachHang.IDKhachHang equals kh.IDKhachHang
-        //                select new {
-        //                    hd,
-        //                    nv,
-        //                    kh
-        //                };
+            Console.WriteLine("14. Thông tin {0} nhân viên có lương cao nhất", num);
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in result) {
+                Console.WriteLine("ID: {0} | Ten: {1} | Luong: {5} | Gioi: {2} | Ngay Sinh: {3} | Ngay Bat Dau Lam Viec: {4} | Dia Chi: {6}",
+                    n.IDNhanVien, n.TenNhanVien, n.GioiTinh, n.NgaySinh.ToString("dd/MM/yyyy"), n.NgayBatDauLam.ToString("dd/MM/yyyy"), n.LuongThang.ToString("C0", ci), n.DiaChi);
+            }
 
-        //    foreach (var row in query) {
-        //        Console.WriteLine("{0} - {1} - {2} - {3} - {4}", row.hd.IDHoaDon, row.hd.NgayLapHoaDon.ToString("dd/MM/yyyy"), row.hd.CuaHang.IDCuaHang, row.kh.TenKhachHang, row.nv.TenNhanVien);
-        //    }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+        // 14. lambda
+        public static void Cau14_lambda(int num) {
+            var result = nhanViens
+                .OrderByDescending(nv => nv.LuongThang)
+                .Take(num);
 
-        //// 15. lambda
-        //public static void Cau15_lambda() {
+            Console.WriteLine("14. Viet bang lambda.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            result.ToList().ForEach(n => Console.WriteLine("ID: {0} | Ten: {1} | Luong: {5} | Gioi: {2} | Ngay Sinh: {3} | Ngay Bat Dau Lam Viec: {4} | Dia Chi: {6}",
+                n.IDNhanVien, n.TenNhanVien, n.GioiTinh, n.NgaySinh.ToString("dd/MM/yyyy"), n.NgayBatDauLam.ToString("dd/MM/yyyy"), n.LuongThang.ToString("C0", ci), n.DiaChi));
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //}
+        // 15. Thông tin các hoá đơn được lập sau từ tháng 5/2021 đến nay
+        public static void Cau15(DateTime date) {
 
-        //// 16. Thông tin nhân viên bán được tổng số lượng sản phẩm nhiều nhất
-        //public static void Cau16() {
+            var query = from hd in hoaDons
+                        where DateTime.Compare(date, hd.NgayLapHoaDon) <= 0
+                        join nv in nhanViens
+                        on hd.NhanVien.IDNhanVien equals nv.IDNhanVien
+                        join kh in khachHangs
+                        on hd.KhachHang.IDKhachHang equals kh.IDKhachHang
+                        select new {
+                            hd,
+                            nv,
+                            kh
+                        };
 
-        //    var query = from nv in nhanViens
-        //                join hd in hoaDons
-        //                on nv.IDNhanVien equals hd.NhanVien.IDNhanVien
-        //                join ct in chiTietHoaDons
-        //                on hd.IDHoaDon equals ct.HoaDon.IDHoaDon
-        //                group ct.SoLuong by new {
-        //                    nv.IDNhanVien,
-        //                    nv.TenNhanVien,
-        //                    nv.GioiTinh,
-        //                    nv.NgaySinh,
-        //                    nv.NgayBatDauLam,
-        //                    nv.LuongThang
-        //                }
-        //                into gr
-        //                select gr;
+            Console.WriteLine("15. Thông tin các hoá đơn được lập sau từ {0} đến nay", date.ToString("dd/MM/yyyy"));
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in query) {
+                Console.WriteLine("ID: {0} | Ngay Lap Hoa Don {1} | ID Cua Hang: {2} | Khach Mua Hang: {3} | NV Ban Hang: {4}",
+                    n.hd.IDHoaDon, n.hd.NgayLapHoaDon.ToString("dd/MM/yyyy"), n.hd.CuaHang.IDCuaHang, n.kh.TenKhachHang, n.nv.TenNhanVien);
+            }
 
-        //    var result = from qr in query
-        //                 orderby qr.Sum() descending
-        //                 select qr;
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //    foreach (var row in result.Take(1)) {
-        //        Console.WriteLine("{0} - {1} - {2}", row.Key.IDNhanVien, row.Key.TenNhanVien, row.Sum());
-        //    }
+        // 15. lambda
+        public static void Cau15_lambda(DateTime date) {
+            var result = hoaDons
+               .Where(hd => (DateTime.Compare(date, hd.NgayLapHoaDon) <= 0))
+               .Join(
+                  nhanViens,
+                  hd => hd.NhanVien.IDNhanVien,
+                  nv => nv.IDNhanVien,
+                  (hd, nv) =>
+                     new {
+                         hd = hd,
+                         nv = nv
+                     }
+               )
+               .Join(
+                  khachHangs,
+                  temp0 => temp0.hd.KhachHang.IDKhachHang,
+                  kh => kh.IDKhachHang,
+                  (temp0, kh) =>
+                     new {
+                         hd = temp0.hd,
+                         nv = temp0.nv,
+                         kh = kh
+                     }
+               );
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+            Console.WriteLine("15. Viet bang lambda.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            result.ToList().ForEach(n => Console.WriteLine("ID: {0} | Ngay Lap Hoa Don {1} | ID Cua Hang: {2} | Khach Mua Hang: {3} | NV Ban Hang: {4}",
+                n.hd.IDHoaDon, n.hd.NgayLapHoaDon.ToString("dd/MM/yyyy"), n.hd.CuaHang.IDCuaHang, n.kh.TenKhachHang, n.nv.TenNhanVien));
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //// 17. Thông tin 10 sản phẩm bán chạy nhất
-        //public static void Cau17() {
+        // 16. Thông tin nhân viên bán được tổng số lượng sản phẩm nhiều nhất
+        public static void Cau16() {
 
-        //    var query = from sp in sanPhams
-        //                join ct in chiTietHoaDons
-        //                on sp.IDSanPham equals ct.SanPham.IDSanPham
-        //                group ct.SoLuong by new {
-        //                    sp.IDSanPham,
-        //                    sp.TenSanPham
-        //                }
-        //                into gr
-        //                select gr;
+            var query = from nv in nhanViens
+                        join hd in hoaDons
+                        on nv.IDNhanVien equals hd.NhanVien.IDNhanVien
+                        join ct in chiTietHoaDons
+                        on hd.IDHoaDon equals ct.HoaDon.IDHoaDon
+                        group ct.SoLuong by new {
+                            nv.IDNhanVien,
+                            nv.TenNhanVien,
+                            nv.GioiTinh,
+                            nv.NgaySinh,
+                            nv.NgayBatDauLam,
+                            nv.LuongThang
+                        }
+                        into gr
+                        select gr;
 
-        //    var result = from qr in query
-        //                 orderby qr.Sum() descending
-        //                 select qr;
+            var result = from qr in query
+                         orderby qr.Sum() descending
+                         select qr;
 
-        //    foreach (var row in result) {
-        //        Console.WriteLine("{0} - {1} - {2}", row.Key.IDSanPham, row.Key.TenSanPham, row.Sum());
-        //    }
+            Console.WriteLine("16. Thông tin nhân viên bán được tổng số lượng sản phẩm nhiều nhất.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in result.Take(1)) {
+                Console.WriteLine("ID: {0} | Ten NV: {1} | Tong So SP Da Ban: {2} | Gioi: {3} | Ngay Sinh: {4} | Luong: {5} | Ngay Bat Dau Lam: {6}",
+                    n.Key.IDNhanVien, n.Key.TenNhanVien, n.Sum(), n.Key.GioiTinh, n.Key.NgaySinh.ToString("dd/MM/yyyy"), n.Key.LuongThang.ToString("C0", ci), n.Key.NgayBatDauLam.ToString("dd/MM/yyy"));
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //    Console.WriteLine("---------------------------------------------------------------------" + "\n");
-        //}
+        // 17. Thông tin 10 sản phẩm bán chạy nhất.
+        public static void Cau17(int num) {
 
-        //// 18. Tính số tiền lương mỗi cửa hàng cần phải trả cho nhân viên
-        //public static void Cau18() {
+            var query = from sp in sanPhams
+                        join ct in chiTietHoaDons
+                        on sp.IDSanPham equals ct.SanPham.IDSanPham
+                        group ct.SoLuong by new {
+                            sp.IDSanPham,
+                            sp.TenSanPham,
+                            sp.DonGia,
+                            sp.ThoiHanBaoHanh,
+                            sp.NamSanXuat
+                        }
+                        into gr
+                        select gr;
 
-        //}
+            var result = from qr in query
+                         orderby qr.Sum() descending
+                         select qr;
 
-        //// 19. Thông tin sản phẩm và số lượng sp cần phải nhập thêm vào kho để tổng số lượng của mỗi sản phẩm có trong kho là 50
-        //public static void Cau19() {
+            Console.WriteLine("17. Thông tin {0} sản phẩm bán chạy nhất.", num);
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in result.Take(num)) {
+                Console.WriteLine("ID: {0} | Ten SP: {1} | So Luong Ban: {2} | Don Gia: {3} | Thoi Han Bao Hanh: {4} nam | Nam SX: {5}",
+                    n.Key.IDSanPham, n.Key.TenSanPham, n.Sum(), n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //}
+        // 18. Tính số tiền lương tháng mỗi cửa hàng cần phải trả cho nhân viên.
+        public static void Cau18() {
+            var query = from ch in cuaHangs
+                        join nv in nhanViens
+                        on ch.IDCuaHang equals nv.CuaHang.IDCuaHang
+                        group nv.LuongThang by new {
+                            ch.IDCuaHang,
+                            ch.DiaChi,
+                            ch.SDT,
+                            ch.Email
+                        }
+                        into gr
+                        select gr;
 
-        //// 20. Tổng doanh thu trong năm 2021
-        //public static void Cau20() {
+            Console.WriteLine("18. Tính số tiền lương tháng mỗi cửa hàng cần phải trả cho nhân viên.");
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in query) {
+                Console.WriteLine("ID Cua Hang: {0} | Luong Cua NV: {1} | SDT: {2} | Email {3} | Dia Chi: {4}",
+                    n.Key.IDCuaHang, n.Sum().ToString("C0", ci), n.Key.SDT, n.Key.Email, n.Key.DiaChi);
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
 
-        //}
+        // 19. Thông tin sản phẩm và số lượng sp cần phải nhập thêm vào kho để tổng số lượng của mỗi sản phẩm có trong kho là 40.
+        public static void Cau19(int num) {
 
-        //// ↑ ↑ ↑ Nguyen Thanh Viet's Section ↑ ↑ ↑
+            var query = from sp in sanPhams
+                        join k in khos
+                        on sp.IDSanPham equals k.SanPham.IDSanPham
+                        group k.SoLuong by new {
+                            sp.IDSanPham,
+                            sp.TenSanPham,
+                            sp.DonGia,
+                            sp.ThoiHanBaoHanh,
+                            sp.NamSanXuat
+                        }
+                        into gr
+                        select gr;
+
+            var result = from qr in query
+                         where qr.Sum() < num
+                         select qr;
+
+
+            Console.WriteLine("19. Thông tin sản phẩm và số lượng sp cần phải nhập thêm vào kho để tổng số lượng của mỗi sản phẩm có trong kho là {0}.", num);
+            Console.WriteLine("---------------------------------------------------------------------");
+            foreach (var n in result) {
+                Console.WriteLine("Can Nhap Them: {5} san pham | ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4}",
+                    n.Key.IDSanPham, n.Key.TenSanPham, n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat, num - n.Sum());
+            }
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+
+        // 20. Tổng doanh thu trong năm 2021
+        public static void Cau20(int year) {
+
+            decimal doanhThu = 0m;
+
+            var query = from hd in hoaDons
+                        where hd.NgayLapHoaDon.Year == year
+                        join ct in chiTietHoaDons
+                        on hd.IDHoaDon equals ct.HoaDon.IDHoaDon
+                        select ct;
+
+
+            foreach (var sp in query) {
+                doanhThu += sp.SanPham.DonGia * sp.SoLuong * (100 - sp.GiamGia) / 100;
+            }
+
+            Console.WriteLine("20. Tổng doanh thu trong năm {0}.", year);
+            Console.WriteLine("---------------------------------------------------------------------");
+            Console.WriteLine("Tong doanh thu cua cong ty trong nam {1} la: {0}", doanhThu.ToString("C0", ci), year);
+            Console.WriteLine("---------------------------------------------------------------------" + "\n");
+        }
+
+        // ↑ ↑ ↑ Nguyen Thanh Viet's Section ↑ ↑ ↑
 
         static void Main(string[] args)
         {
@@ -915,9 +1116,23 @@ namespace QLCHDoDienTu
             Cau8();
             Cau9();
             Cau10();
-            //Cau11();
 
-            //Cau12();
+            //Nguyen Thanh Viet
+            Cau11("May giat");
+            Cau11_lambda("May giat");
+            Cau12("Dien thoai di dong", 1E7m);
+            Cau12_lambda("Dien thoai di dong", 1E7m);
+            Cau13(15);
+            Cau13_lambda(15);
+            Cau14(3);
+            Cau14_lambda(3);
+            Cau15(new DateTime(2021, 5, 1));
+            Cau15_lambda(new DateTime(2021, 5, 1));
+            Cau16();
+            Cau17(10);
+            Cau18();
+            Cau19(40);
+            Cau20(2021);
             Console.ReadKey();
 
         }
