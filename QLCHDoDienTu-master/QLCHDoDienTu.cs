@@ -29,7 +29,8 @@ namespace QLCHDoDienTu
             loaiHangs.Add(new LoaiHang(5, "May giat"));
             loaiHangs.Add(new LoaiHang(6, "May dieu hoa"));
         }
-        public static void taoDSNhaCungCap() {
+        public static void taoDSNhaCungCap()
+        {
             nhaCungCaps.Add(new NhaCungCap(001, "Nha cung cap Hoai Phong", "A24 Cong Quynh, Phuong Nguyen Cu Trinh, Quan 1, Thanh pho Ho Chi Minh", "0925306345", "hoaiphong@gmail.com"));
             nhaCungCaps.Add(new NhaCungCap(002, "Nha cung cap Dien Tu VIP", "151, Duong Nguyen Du, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh", "0936368581", "dienmayVIP@gmail.com"));
             nhaCungCaps.Add(new NhaCungCap(003, "Nha cung cap Techbot", "Kim Giang, Phuong Dai Kim, Quan Hoang Mai, Ha Noi", "0905644699", "techbot@gmail.com"));
@@ -64,7 +65,7 @@ namespace QLCHDoDienTu
             sanPhams.Add(new SanPham(25, "Laptop Asus 1", 17000000, 1, 2021, nhaCungCaps[1], loaiHangs[0]));
             sanPhams.Add(new SanPham(26, "May dieu hoa Casper 1", 13000000, 2, 2021, nhaCungCaps[2], loaiHangs[4]));
         }
-        
+
         public static void taoDSKhachHang()
         {
             DateTime dt1 = new DateTime(1993, 12, 20, 10, 40, 26);
@@ -78,13 +79,15 @@ namespace QLCHDoDienTu
             DateTime dt5 = new DateTime(1998, 6, 5, 1, 59, 22);
             khachHangs.Add(new KhachHang(0005, "Nguyen Thi Nga", "Nu", dt5, "0988667889", "ngant@gmail.com", "191 Van Chuong, Phuong Van Chuong, Quan Dong Da, Ha Noi"));
         }
-        public static void taoDSCuaHang() {
+        public static void taoDSCuaHang()
+        {
             cuaHangs.Add(new CuaHang(0000001, "245, quan Cau Giay, Ha Noi", "0979796721", "fpt@gmail.com"));
             cuaHangs.Add(new CuaHang(0000002, "123, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh", "0932331414", "tgdd@gmail.com"));
             cuaHangs.Add(new CuaHang(0000003, "226 Phuong Dai Kim, Quan Hoang Mai, Ha Noi", "0928294422", "vuphong@gmail.com"));
 
         }
-        public static void taoDSNhanVien() {
+        public static void taoDSNhanVien()
+        {
             DateTime dt1 = new DateTime(1999, 12, 22, 9, 39, 25);
             DateTime dt2 = new DateTime(2015, 3, 11, 14, 39, 25);
             nhanViens.Add(new NhanVien(000001, "Nguyen Manh Hung", "Nam", dt1, "416 Kim Nguu, Phuong Vinh Tuy, Quan Hai Ba Trung, Ha Noi", dt2, 10000000, cuaHangs[0]));
@@ -258,7 +261,7 @@ namespace QLCHDoDienTu
             }
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
-            // Câu 1 dùng Lambda
+        // Câu 1 dùng Lambda
         public static void Cau1Lambda()
         {
             Console.WriteLine("Câu 1 Lambda:");
@@ -348,7 +351,7 @@ namespace QLCHDoDienTu
             Console.WriteLine("Câu 3: Sắp xếp thông tin các sản phẩm có giá giảm dần");
             foreach (var sapXepGiam in sapXepGiams)
             {
-                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1}", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
+                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1} đồng", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
             }
 
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
@@ -363,7 +366,7 @@ namespace QLCHDoDienTu
                 .Select(i => new { i.TenSanPham, i.DonGia });
             foreach (var sapXepGiam in sapXepGiams)
             {
-                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1}", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
+                Console.WriteLine("Tên sản phẩm: {0}, đơn giá: {1} đồng", sapXepGiam.TenSanPham, sapXepGiam.DonGia);
             }
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
@@ -498,49 +501,50 @@ namespace QLCHDoDienTu
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
 
-        // Câu 6: Xuất ra thời hạn bảo hành còn lại của từng sản phẩm đến thời điểm hiện tại, sau đó chỉ xuất thông tin của sản phẩm còn hạn bảo hành đầu tiên, thứ hai và cuối cùng
+        // Câu 6: Xuất ra tình trạng bảo hành của từng sản phẩm đến thời điểm hiện tại, sau đó chỉ xuất thông tin của sản phẩm hết hạn bảo hành đầu tiên, thứ hai và cuối cùng
         public static void Cau6()
         {
-            Console.WriteLine("Câu 6: Xuất ra thời hạn bảo hành còn lại của từng sản phẩm đến thời điểm hiện tại, sau đó chỉ xuất thông tin của sản phẩm còn hạn bảo hành đầu tiên, thứ hai và cuối cùng");
+            Console.WriteLine("Câu 6:  Xuất ra tình trạng bảo hành của từng sản phẩm đến thời điểm hiện tại, sau đó chỉ xuất thông tin của sản phẩm hết hạn bảo hành đầu tiên, thứ hai và cuối cùng");
             Console.WriteLine();
             DateTime now = DateTime.Now;
             int year = now.Year;
             var baoHanhConLais =
                 from sp in sanPhams
-                select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham, ThoiGianConLai = year - (sp.NamSanXuat + sp.ThoiHanBaoHanh)};
-            Console.WriteLine("Danh sách toàn bộ thời hạn bảo hành của tất cả sản phẩm:");
+                select new { MaSanPham = sp.IDSanPham, TenSanPham = sp.TenSanPham, ThoiGianConLai = year - (sp.NamSanXuat + sp.ThoiHanBaoHanh) };
+            Console.WriteLine("Danh sách tình trạng bảo hành của tất cả sản phẩm:");
             foreach (var baoHanhConLai in baoHanhConLais)
             {
-                if(baoHanhConLai.ThoiGianConLai <= 0)
+                if (baoHanhConLai.ThoiGianConLai <= 0)
                 {
-                    Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}, hết hạn bảo hành", baoHanhConLai.MaSanPham, baoHanhConLai.TenSanPham);
+                    Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}, còn thời hạn bảo hành", baoHanhConLai.MaSanPham, baoHanhConLai.TenSanPham);
+
                 }
                 else
-                Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}, thời gian bảo hành còn lại: {2} năm", baoHanhConLai.MaSanPham, baoHanhConLai.TenSanPham, baoHanhConLai.ThoiGianConLai);
+                    Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}, hết hạn bảo hành", baoHanhConLai.MaSanPham, baoHanhConLai.TenSanPham);
             }
 
-            // Sản phẩm còn thời hạn bảo hành đầu tiên trong danh sách
-            var dauTien = 
+            // Sản phẩm hết thời hạn bảo hành đầu tiên trong danh sách
+            var dauTien =
                 (from bhcl in baoHanhConLais
                  where bhcl.ThoiGianConLai > 0
                  select new { MaSanPham = bhcl.MaSanPham, TenSanPham = bhcl.TenSanPham, bhcl.ThoiGianConLai }).First();
             Console.WriteLine();
-            Console.WriteLine("Sản phẩm đầu tiên còn hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, thời gian bảo hành còn lại: {2} năm", dauTien.MaSanPham, dauTien.TenSanPham, dauTien.ThoiGianConLai);
+            Console.WriteLine("Sản phẩm đầu tiên hết hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, hết hạn bảo hành", dauTien.MaSanPham, dauTien.TenSanPham);
 
-            // Sản phẩm còn thời hạn bảo hành thứ hai trong danh sách
+            // Sản phẩm hết thời hạn bảo hành thứ hai trong danh sách
             var thuHai =
                  (from bhcl in baoHanhConLais
                   where bhcl.ThoiGianConLai > 0
                   select new { MaSanPham = bhcl.MaSanPham, TenSanPham = bhcl.TenSanPham, bhcl.ThoiGianConLai }).Skip(1).Take(1).Single();
-            Console.WriteLine("Sản phẩm thứ hai còn hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, thời gian bảo hành còn lại: {2} năm", thuHai.MaSanPham, thuHai.TenSanPham, thuHai.ThoiGianConLai);
+            Console.WriteLine("Sản phẩm thứ hai hết hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, hết hạn bảo hành", thuHai.MaSanPham, thuHai.TenSanPham);
 
-            // Sản phẩm còn thời hạn bảo hành cuối cùng trong danh sách
+            // Sản phẩm hết thời hạn bảo hành cuối cùng trong danh sách
             var cuoiCung =
                (from bhcl in baoHanhConLais
                 where bhcl.ThoiGianConLai > 0
                 orderby bhcl.MaSanPham descending
                 select new { MaSanPham = bhcl.MaSanPham, TenSanPham = bhcl.TenSanPham, bhcl.ThoiGianConLai }).First();
-            Console.WriteLine("Sản phẩm cuối cùng còn hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, thời gian bảo hành còn lại: {2} năm", cuoiCung.MaSanPham, cuoiCung.TenSanPham, cuoiCung.ThoiGianConLai);
+            Console.WriteLine("Sản phẩm cuối cùng hết hạn bảo hành có mã sản phẩm: {0}, tên sản phẩm: {1}, hết hạn bảo hành", cuoiCung.MaSanPham, cuoiCung.TenSanPham);
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
         // Câu 7: Tìm thông tin sản phẩm bán chậm nhất của cửa hàng 0000002 (ít người mua nhất)
@@ -552,9 +556,9 @@ namespace QLCHDoDienTu
                  join k in khos on sp.IDSanPham equals k.SanPham.IDSanPham
                  join ch in cuaHangs on k.CuaHang.IDCuaHang equals ch.IDCuaHang
                  where ch.IDCuaHang == 0000002
-                 group sp by new{ sp.IDSanPham, sp.TenSanPham, ch.IDCuaHang } into q
+                 group sp by new { sp.IDSanPham, sp.TenSanPham, ch.IDCuaHang } into q
                  select new { MaSanPham = q.Key.IDSanPham, TenSanPham = q.Key.TenSanPham, MaCuaHang = q.Key.IDCuaHang };
-            
+
             // Bước 2: Đếm số lượng người mua theo mỗi loại sản phẩm của cửa hàng 0000002
             var DemNguoiMuas =
                 from a in tatCaSPCuaHang2s
@@ -574,7 +578,7 @@ namespace QLCHDoDienTu
             {
                 Console.WriteLine("Mã sản phẩm: {0}, tên sản phẩm: {1}, số người mua: {2}", kq.MaSanPham, kq.TenSanPham, kq.SoNguoiMua);
             }
-   
+
 
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
@@ -606,7 +610,7 @@ namespace QLCHDoDienTu
             // Bước 4: Tính giá trung bình mỗi hóa đơn
             decimal giaTrungBinhCacHoaDons = TongTien / dem;
             Console.WriteLine("Câu 8: Tính giá tiền trung bình của mỗi hóa đơn");
-            Console.WriteLine("Giá tiền trung bình của mỗi hóa đơn là: {0} đồng", giaTrungBinhCacHoaDons);
+            Console.WriteLine("Giá tiền trung bình của mỗi hóa đơn là: {0} đồng", Math.Round(giaTrungBinhCacHoaDons));
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
         }
 
@@ -618,8 +622,8 @@ namespace QLCHDoDienTu
 
             // Bước 1: Tính số năm kinh nghiệm của từng nhân viên
             var soNamKNTungNhanViens =
-                 from nv in nhanViens 
-                 select new { MaNhanVien = nv.IDNhanVien, TenNhanVien = nv.TenNhanVien, SoNamKinhNghiem = (year - nv.NgayBatDauLam.Year)};
+                 from nv in nhanViens
+                 select new { MaNhanVien = nv.IDNhanVien, TenNhanVien = nv.TenNhanVien, SoNamKinhNghiem = (year - nv.NgayBatDauLam.Year) };
 
             // Bước 2: Tìm nhân viên có trên 3 năm kinh nghiệm
             var thongTinNhanVienTren3NamKinhNghiems =
@@ -627,7 +631,7 @@ namespace QLCHDoDienTu
                 group snkntnv by new { snkntnv.MaNhanVien, snkntnv.SoNamKinhNghiem, snkntnv.TenNhanVien } into q
                 where q.Key.SoNamKinhNghiem > 3
                 select new { MaNhanVien = q.Key.MaNhanVien, TenNhanVien = q.Key.TenNhanVien, SoNamKinhNghiem = q.Key.SoNamKinhNghiem };
-            
+
             // Bước 3: Tìm thông tin khách hàng được nhân viên có trên 3 năm kinh nghiệm tính tiền
             var thongTinKHs =
                  from ttnv3n in thongTinNhanVienTren3NamKinhNghiems
@@ -661,13 +665,13 @@ namespace QLCHDoDienTu
             {
                 Console.WriteLine("Có nhân viên không bán được hóa đơn nào");
             }
-   
+
             // Bước 2: Tìm danh sách các nhân viên bán được ít nhất 1 hóa đơn
             var hoaDonNhanViens =
                 from nv in nhanViens
                 join hd in hoaDons on nv.IDNhanVien equals hd.NhanVien.IDNhanVien
                 group nv by new { nv.IDNhanVien, nv.TenNhanVien, nv.LuongThang } into q
-                select new { MaNhanVien = q.Key.IDNhanVien, TenNhanVien = q.Key.TenNhanVien, LuongThang = q.Key.LuongThang};
+                select new { MaNhanVien = q.Key.IDNhanVien, TenNhanVien = q.Key.TenNhanVien, LuongThang = q.Key.LuongThang };
 
             // Bước 3: Tìm thông tin của toàn bộ nhân viên 
             var infoNhanViens =
@@ -681,15 +685,16 @@ namespace QLCHDoDienTu
             var kqs =
                 from kdh in koDonHangs
                 select new { MaNhanVien = kdh.MaNhanVien, TenNhanVien = kdh.TenNhanVien, LuongBanDau = kdh.LuongThang, HaLuong = kdh.LuongThang * 50 / 100 };
-        
+
             foreach (var kq in kqs)
             {
-                Console.WriteLine("Đó là nhân viên có mã: {0}, tên là: {1}, lương ban đầu: {2}, lương sau khi hạ: {3}", kq.MaNhanVien, kq.TenNhanVien, kq.LuongBanDau, kq.HaLuong);
+                Console.WriteLine("Đó là nhân viên có mã: {0}, tên là: {1}, lương ban đầu: {2} đồng, lương sau khi hạ: {3} đồng", kq.MaNhanVien, kq.TenNhanVien, kq.LuongBanDau, kq.HaLuong);
             }
         }
         // ↓ ↓ ↓ Nguyen Thanh Viet's Section ↓ ↓ ↓
         // 11.	Thông tin các nhà cung cấp có sản phẩm máy giặt.
-        public static void Cau11(string tenLoaiHang) {
+        public static void Cau11(string tenLoaiHang)
+        {
 
             var query = from nc in nhaCungCaps
                         join sp in sanPhams
@@ -701,7 +706,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("\n11. Thông tin các nhà cung cấp có sản phẩm {0}.", tenLoaiHang);
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in query.Distinct()) {
+            foreach (var n in query.Distinct())
+            {
                 Console.WriteLine("ID: {0} | Ten NCC: {1} | SDT: {2} | Email: {3} | Dia Chi: {4}",
                     n.IDNhaCungCap, n.TenNhaCungCap, n.SDT, n.Email, n.DiaChi);
             }
@@ -710,7 +716,8 @@ namespace QLCHDoDienTu
         }
 
         // 11. lambda
-        public static void Cau11_lambda(string tenLoaiHang) {
+        public static void Cau11_lambda(string tenLoaiHang)
+        {
             var result = nhaCungCaps
                .Join(
                   sanPhams,
@@ -744,7 +751,8 @@ namespace QLCHDoDienTu
         }
 
         // 12. Thông tin sản phẩm là điện thoại có giá > 10tr, sắp xếp tăng dần theo giá thành
-        public static void Cau12(string loaiHang, decimal giaTien) {
+        public static void Cau12(string loaiHang, decimal giaTien)
+        {
 
             var query = from sp in sanPhams
                         join lh in loaiHangs
@@ -755,7 +763,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("12. Thông tin sản phẩm là {0} có giá > {1}, sắp xếp tăng dần theo giá thành.", loaiHang, giaTien.ToString("C0", ci));
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in query.Distinct()) {
+            foreach (var n in query.Distinct())
+            {
                 Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4}",
                     n.IDSanPham, n.TenSanPham, n.DonGia.ToString("C0", ci), n.ThoiHanBaoHanh, n.NamSanXuat);
             }
@@ -763,7 +772,8 @@ namespace QLCHDoDienTu
         }
 
         // 12. lambda
-        public static void Cau12_lambda(string loaiHang, decimal giaTien) {
+        public static void Cau12_lambda(string loaiHang, decimal giaTien)
+        {
             var result = sanPhams
                 .Join(
                     loaiHangs,
@@ -791,12 +801,14 @@ namespace QLCHDoDienTu
         }
 
         // 13. Thông tin sản phẩm sắp hết (tổng số lượng trong các kho < 15 sp)
-        public static void Cau13(int nail) {
+        public static void Cau13(int nail)
+        {
 
             var query = from sp in sanPhams
                         join k in khos
                         on sp.IDSanPham equals k.SanPham.IDSanPham
-                        group k.SoLuong by new {
+                        group k.SoLuong by new
+                        {
                             sp.IDSanPham,
                             sp.TenSanPham,
                             sp.DonGia,
@@ -812,7 +824,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("13. Thông tin sản phẩm sắp hết (tổng số lượng trong các kho < {0} sp)", nail);
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in result) {
+            foreach (var n in result)
+            {
                 Console.WriteLine("ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4} | Tong SL con trong Kho: {5}",
                     n.Key.IDSanPham, n.Key.TenSanPham, n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat, n.Sum());
             }
@@ -822,7 +835,8 @@ namespace QLCHDoDienTu
         }
 
         // 13. lambda
-        public static void Cau13_lambda(int nail) {
+        public static void Cau13_lambda(int nail)
+        {
             var result = sanPhams
                .Join(
                   khos,
@@ -857,7 +871,8 @@ namespace QLCHDoDienTu
         }
 
         // 14. Thông tin 3 nhân viên có lương cao nhất
-        public static void Cau14(int num) {
+        public static void Cau14(int num)
+        {
 
             var query = from nv in nhanViens
                         orderby nv.LuongThang descending
@@ -867,7 +882,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("14. Thông tin {0} nhân viên có lương cao nhất", num);
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in result) {
+            foreach (var n in result)
+            {
                 Console.WriteLine("ID: {0} | Ten: {1} | Luong: {5} | Gioi: {2} | Ngay Sinh: {3} | Ngay Bat Dau Lam Viec: {4} | Dia Chi: {6}",
                     n.IDNhanVien, n.TenNhanVien, n.GioiTinh, n.NgaySinh.ToString("dd/MM/yyyy"), n.NgayBatDauLam.ToString("dd/MM/yyyy"), n.LuongThang.ToString("C0", ci), n.DiaChi);
             }
@@ -876,7 +892,8 @@ namespace QLCHDoDienTu
         }
 
         // 14. lambda
-        public static void Cau14_lambda(int num) {
+        public static void Cau14_lambda(int num)
+        {
             var result = nhanViens
                 .OrderByDescending(nv => nv.LuongThang)
                 .Take(num);
@@ -889,7 +906,8 @@ namespace QLCHDoDienTu
         }
 
         // 15. Thông tin các hoá đơn được lập sau từ tháng 5/2021 đến nay
-        public static void Cau15(DateTime date) {
+        public static void Cau15(DateTime date)
+        {
 
             var query = from hd in hoaDons
                         where DateTime.Compare(date, hd.NgayLapHoaDon) <= 0
@@ -897,7 +915,8 @@ namespace QLCHDoDienTu
                         on hd.NhanVien.IDNhanVien equals nv.IDNhanVien
                         join kh in khachHangs
                         on hd.KhachHang.IDKhachHang equals kh.IDKhachHang
-                        select new {
+                        select new
+                        {
                             hd,
                             nv,
                             kh
@@ -905,7 +924,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("15. Thông tin các hoá đơn được lập sau từ {0} đến nay", date.ToString("dd/MM/yyyy"));
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in query) {
+            foreach (var n in query)
+            {
                 Console.WriteLine("ID: {0} | Ngay Lap Hoa Don {1} | ID Cua Hang: {2} | Khach Mua Hang: {3} | NV Ban Hang: {4}",
                     n.hd.IDHoaDon, n.hd.NgayLapHoaDon.ToString("dd/MM/yyyy"), n.hd.CuaHang.IDCuaHang, n.kh.TenKhachHang, n.nv.TenNhanVien);
             }
@@ -914,7 +934,8 @@ namespace QLCHDoDienTu
         }
 
         // 15. lambda
-        public static void Cau15_lambda(DateTime date) {
+        public static void Cau15_lambda(DateTime date)
+        {
             var result = hoaDons
                .Where(hd => (DateTime.Compare(date, hd.NgayLapHoaDon) <= 0))
                .Join(
@@ -947,14 +968,16 @@ namespace QLCHDoDienTu
         }
 
         // 16. Thông tin nhân viên bán được tổng số lượng sản phẩm nhiều nhất
-        public static void Cau16() {
+        public static void Cau16()
+        {
 
             var query = from nv in nhanViens
                         join hd in hoaDons
                         on nv.IDNhanVien equals hd.NhanVien.IDNhanVien
                         join ct in chiTietHoaDons
                         on hd.IDHoaDon equals ct.HoaDon.IDHoaDon
-                        group ct.SoLuong by new {
+                        group ct.SoLuong by new
+                        {
                             nv.IDNhanVien,
                             nv.TenNhanVien,
                             nv.GioiTinh,
@@ -971,7 +994,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("16. Thông tin nhân viên bán được tổng số lượng sản phẩm nhiều nhất.");
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in result.Take(1)) {
+            foreach (var n in result.Take(1))
+            {
                 Console.WriteLine("ID: {0} | Ten NV: {1} | Tong So SP Da Ban: {2} | Gioi: {3} | Ngay Sinh: {4} | Luong: {5} | Ngay Bat Dau Lam: {6}",
                     n.Key.IDNhanVien, n.Key.TenNhanVien, n.Sum(), n.Key.GioiTinh, n.Key.NgaySinh.ToString("dd/MM/yyyy"), n.Key.LuongThang.ToString("C0", ci), n.Key.NgayBatDauLam.ToString("dd/MM/yyy"));
             }
@@ -979,12 +1003,14 @@ namespace QLCHDoDienTu
         }
 
         // 17. Thông tin 10 sản phẩm bán chạy nhất.
-        public static void Cau17(int num) {
+        public static void Cau17(int num)
+        {
 
             var query = from sp in sanPhams
                         join ct in chiTietHoaDons
                         on sp.IDSanPham equals ct.SanPham.IDSanPham
-                        group ct.SoLuong by new {
+                        group ct.SoLuong by new
+                        {
                             sp.IDSanPham,
                             sp.TenSanPham,
                             sp.DonGia,
@@ -1000,7 +1026,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("17. Thông tin {0} sản phẩm bán chạy nhất.", num);
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in result.Take(num)) {
+            foreach (var n in result.Take(num))
+            {
                 Console.WriteLine("ID: {0} | Ten SP: {1} | So Luong Ban: {2} | Don Gia: {3} | Thoi Han Bao Hanh: {4} nam | Nam SX: {5}",
                     n.Key.IDSanPham, n.Key.TenSanPham, n.Sum(), n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat);
             }
@@ -1008,11 +1035,13 @@ namespace QLCHDoDienTu
         }
 
         // 18. Tính số tiền lương tháng mỗi cửa hàng cần phải trả cho nhân viên.
-        public static void Cau18() {
+        public static void Cau18()
+        {
             var query = from ch in cuaHangs
                         join nv in nhanViens
                         on ch.IDCuaHang equals nv.CuaHang.IDCuaHang
-                        group nv.LuongThang by new {
+                        group nv.LuongThang by new
+                        {
                             ch.IDCuaHang,
                             ch.DiaChi,
                             ch.SDT,
@@ -1023,7 +1052,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("18. Tính số tiền lương tháng mỗi cửa hàng cần phải trả cho nhân viên.");
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in query) {
+            foreach (var n in query)
+            {
                 Console.WriteLine("ID Cua Hang: {0} | Luong Cua NV: {1} | SDT: {2} | Email {3} | Dia Chi: {4}",
                     n.Key.IDCuaHang, n.Sum().ToString("C0", ci), n.Key.SDT, n.Key.Email, n.Key.DiaChi);
             }
@@ -1031,12 +1061,14 @@ namespace QLCHDoDienTu
         }
 
         // 19. Thông tin sản phẩm và số lượng sp cần phải nhập thêm vào kho để tổng số lượng của mỗi sản phẩm có trong kho là 40.
-        public static void Cau19(int num) {
+        public static void Cau19(int num)
+        {
 
             var query = from sp in sanPhams
                         join k in khos
                         on sp.IDSanPham equals k.SanPham.IDSanPham
-                        group k.SoLuong by new {
+                        group k.SoLuong by new
+                        {
                             sp.IDSanPham,
                             sp.TenSanPham,
                             sp.DonGia,
@@ -1053,7 +1085,8 @@ namespace QLCHDoDienTu
 
             Console.WriteLine("19. Thông tin sản phẩm và số lượng sp cần phải nhập thêm vào kho để tổng số lượng của mỗi sản phẩm có trong kho là {0}.", num);
             Console.WriteLine("---------------------------------------------------------------------");
-            foreach (var n in result) {
+            foreach (var n in result)
+            {
                 Console.WriteLine("Can Nhap Them: {5} san pham | ID: {0} | Ten SP: {1} | Don Gia: {2} | Thoi Han Bao Hanh: {3} nam | Nam SX: {4}",
                     n.Key.IDSanPham, n.Key.TenSanPham, n.Key.DonGia.ToString("C0", ci), n.Key.ThoiHanBaoHanh, n.Key.NamSanXuat, num - n.Sum());
             }
@@ -1061,7 +1094,8 @@ namespace QLCHDoDienTu
         }
 
         // 20. Tổng doanh thu trong năm 2021
-        public static void Cau20(int year) {
+        public static void Cau20(int year)
+        {
 
             decimal doanhThu = 0m;
 
@@ -1072,7 +1106,8 @@ namespace QLCHDoDienTu
                         select ct;
 
 
-            foreach (var sp in query) {
+            foreach (var sp in query)
+            {
                 doanhThu += sp.SanPham.DonGia * sp.SoLuong * (100 - sp.GiamGia) / 100;
             }
 
