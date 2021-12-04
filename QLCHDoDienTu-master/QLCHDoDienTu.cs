@@ -600,15 +600,11 @@ namespace QLCHDoDienTu
 
             // Bước 3: Tính số lượng hóa đơn
             var demSoHoaDons =
-                 from hd in hoaDons
-                 select hd.IDHoaDon;
-            decimal dem = 0;
-            foreach (var demSoHoaDon in demSoHoaDons)
-            {
-                dem++;
-            }
+                 (from hd in hoaDons
+                 select hd.IDHoaDon).Count();
+            
             // Bước 4: Tính giá trung bình mỗi hóa đơn
-            decimal giaTrungBinhCacHoaDons = TongTien / dem;
+            decimal giaTrungBinhCacHoaDons = TongTien / demSoHoaDons;
             Console.WriteLine("Câu 8: Tính giá tiền trung bình của mỗi hóa đơn");
             Console.WriteLine("Giá tiền trung bình của mỗi hóa đơn là: {0} đồng", Math.Round(giaTrungBinhCacHoaDons));
             Console.WriteLine("---------------------------------------------------------------------" + "\n");
