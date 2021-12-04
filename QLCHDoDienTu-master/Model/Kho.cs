@@ -10,6 +10,13 @@ namespace QLCHDoDienTu {
 		public SanPham SanPham { get; set; }
 		public int SoLuong { get; set; }
 
+		public Kho(Kho k)
+		{
+			this.CuaHang = k.CuaHang;
+			this.SanPham = k.SanPham;
+			this.SoLuong = k.SoLuong;
+		}
+
 		public Kho(CuaHang CuaHang_, SanPham SanPham_, int SoLuong_) {
 			this.CuaHang = CuaHang_;
 			this.SanPham = SanPham_;

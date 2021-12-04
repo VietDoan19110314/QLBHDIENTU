@@ -15,6 +15,18 @@ namespace QLCHDoDienTu {
 		public decimal LuongThang { get; set; }
 		public CuaHang CuaHang { get; set; }
 
+		public NhanVien(NhanVien nv)
+		{
+			this.IDNhanVien = nv.IDNhanVien;
+			this.TenNhanVien = nv.TenNhanVien;
+			this.GioiTinh = nv.GioiTinh;
+			this.NgaySinh = nv.NgaySinh;
+			this.DiaChi = nv.DiaChi;
+			this.NgayBatDauLam = nv.NgayBatDauLam;
+			this.LuongThang = nv.LuongThang;
+			this.CuaHang = nv.CuaHang;
+		}
+
 		public NhanVien(int IDNhanVien_, string TenNhanVien_, string GioiTinh_, DateTime NgaySinh_, string DiaChi_, DateTime NgayBatDauLam_, decimal LuongThang_, CuaHang CuaHang_) {
 			this.IDNhanVien = IDNhanVien_;
 			this.TenNhanVien = TenNhanVien_;

@@ -13,6 +13,17 @@ namespace QLCHDoDienTu {
 		public int NamSanXuat { get; set; }
 		public NhaCungCap NhaCungCap { get; set; }
 		public LoaiHang LoaiHang { get; set; }
+
+		public SanPham(SanPham sp)
+		{
+			this.IDSanPham = sp.IDSanPham;
+			this.TenSanPham = sp.TenSanPham;
+			this.DonGia = sp.DonGia;
+			this.ThoiHanBaoHanh = sp.ThoiHanBaoHanh;
+			this.NamSanXuat = sp.NamSanXuat;
+			this.NhaCungCap = sp.NhaCungCap;
+			this.LoaiHang = sp.LoaiHang;
+		}
 		public SanPham(int IDSanPham_, string TenSanPham_, decimal DonGia_, int ThoiHanBaoHanh_, int NamSanXuat_, NhaCungCap NhaCungCap_, LoaiHang LoaiHang_) {
 			this.IDSanPham = IDSanPham_;
 			this.TenSanPham = TenSanPham_;

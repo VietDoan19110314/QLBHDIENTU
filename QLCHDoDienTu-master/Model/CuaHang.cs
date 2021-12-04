@@ -11,6 +11,14 @@ namespace QLCHDoDienTu {
 		public string SDT { get; set; }
 		public string Email { get; set; }
 
+		public CuaHang(CuaHang ch)
+		{
+			this.IDCuaHang = ch.IDCuaHang;
+			this.DiaChi = ch.DiaChi;
+			this.SDT = ch.SDT;
+			this.Email = ch.Email;
+		}
+
 		public CuaHang(int IDCuaHang_, string DiaChi_, string SDT_, string Email_) {
 			this.IDCuaHang = IDCuaHang_;
 			this.DiaChi = DiaChi_;

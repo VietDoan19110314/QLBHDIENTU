@@ -13,6 +13,16 @@ namespace QLCHDoDienTu {
 		public DateTime NgaySinh { get; set; }
 		public NhanVien NhanVien { get; set; }
 
+		public ThanNhan(ThanNhan tn)
+		{
+			this.IDThanNhan = tn.IDThanNhan;
+			this.TenThanNhan = tn.TenThanNhan;
+			this.QuanHe = tn.QuanHe;
+			this.GioiTinh = tn.GioiTinh;
+			this.NgaySinh = tn.NgaySinh;
+			this.NhanVien = tn.NhanVien;
+		}
+
 		public ThanNhan(int IDThanNhan_, string TenThanNhan_, string QuanHe_, string GioiTinh_, DateTime NgaySinh_, NhanVien NhanVien_) {
 			this.IDThanNhan = IDThanNhan_;
 			this.TenThanNhan = TenThanNhan_;

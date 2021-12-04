@@ -14,6 +14,16 @@ namespace QLCHDoDienTu {
 		public string Email { get; set; }
 		public string DiaChi { get; set; }
 
+		public KhachHang(KhachHang kh)
+		{
+			this.IDKhachHang = kh.IDKhachHang;
+			this.TenKhachHang = kh.TenKhachHang;
+			this.GioiTinh = kh.GioiTinh;
+			this.NgaySinh = kh.NgaySinh;
+			this.SDT = kh.SDT;
+			this.Email = kh.Email;
+			this.DiaChi = kh.DiaChi;
+		}
 		public KhachHang(int IDKhachHang_, string TenKhachHang_, string GioiTinh_, DateTime NgaySinh_, string SDT_, string Email_, string DiaChi_) {
 			this.IDKhachHang = IDKhachHang_;
 			this.TenKhachHang = TenKhachHang_;

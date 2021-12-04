@@ -12,6 +12,15 @@ namespace QLCHDoDienTu {
 		public string SDT { get; set; }
 		public string Email { get; set; }
 
+		public NhaCungCap(NhaCungCap ncc)
+		{
+			this.IDNhaCungCap = ncc.IDNhaCungCap;
+			this.TenNhaCungCap = ncc.TenNhaCungCap;
+			this.DiaChi = ncc.DiaChi;
+			this.SDT = ncc.SDT;
+			this.Email = ncc.Email;
+		}
+
 		public NhaCungCap(int IDNhaCungCap_, string TenNhaCungCap_, string DiaChi_, string SDT_, string Email_) {
 			this.IDNhaCungCap = IDNhaCungCap_;
 			this.TenNhaCungCap = TenNhaCungCap_;
