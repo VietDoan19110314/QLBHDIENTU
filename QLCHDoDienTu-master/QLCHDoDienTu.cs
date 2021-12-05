@@ -43,7 +43,7 @@ namespace QLCHDoDienTu
             sanPhams.Add(new SanPham(03, "Laptop Dell", 10999000, 2, 2020, nhaCungCaps[1], loaiHangs[0]));
             sanPhams.Add(new SanPham(04, "Laptop Lenovo", 18699000, 2, 2021, nhaCungCaps[1], loaiHangs[0]));
             sanPhams.Add(new SanPham(05, "Dien thoai Iphone", 33990000, 2, 2021, nhaCungCaps[0], loaiHangs[1]));
-            sanPhams.Add(new SanPham(06, "Dien thoai Samsung", 14990000, 1, 2021, nhaCungCaps[1], loaiHangs[0]));
+            sanPhams.Add(new SanPham(06, "Dien thoai Samsung", 14990000, 1, 2021, nhaCungCaps[1], loaiHangs[1]));
             sanPhams.Add(new SanPham(07, "Dien thoai Oppo", 19990000, 1, 2021, nhaCungCaps[0], loaiHangs[1]));
             sanPhams.Add(new SanPham(08, "Dien thoai Samsung 1", 5290000, 2, 2020, nhaCungCaps[1], loaiHangs[1]));
             sanPhams.Add(new SanPham(09, "Dien thoai Iphone 1", 32500000, 2, 2020, nhaCungCaps[0], loaiHangs[1]));
@@ -58,12 +58,12 @@ namespace QLCHDoDienTu
             sanPhams.Add(new SanPham(18, "May giat Panasonic", 7500000, 2, 2019, nhaCungCaps[2], loaiHangs[4]));
             sanPhams.Add(new SanPham(19, "May giat Toshiba", 10090000, 2, 2018, nhaCungCaps[2], loaiHangs[4]));
             sanPhams.Add(new SanPham(20, "May giat Sharp", 6290000, 2, 2017, nhaCungCaps[2], loaiHangs[4]));
-            sanPhams.Add(new SanPham(21, "May dieu hoa Casper", 12950000, 2, 2021, nhaCungCaps[3], loaiHangs[4]));
-            sanPhams.Add(new SanPham(22, "May dieu hoa Panasonic", 15960000, 2, 2021, nhaCungCaps[3], loaiHangs[4]));
-            sanPhams.Add(new SanPham(23, "May dieu hoa Toshiba", 6800000, 2, 2020, nhaCungCaps[3], loaiHangs[4]));
-            sanPhams.Add(new SanPham(24, "May dieu hoa LG", 9490000, 2, 2021, nhaCungCaps[3], loaiHangs[4]));
+            sanPhams.Add(new SanPham(21, "May dieu hoa Casper", 12950000, 2, 2021, nhaCungCaps[3], loaiHangs[5]));
+            sanPhams.Add(new SanPham(22, "May dieu hoa Panasonic", 15960000, 2, 2021, nhaCungCaps[3], loaiHangs[5]));
+            sanPhams.Add(new SanPham(23, "May dieu hoa Toshiba", 6800000, 2, 2020, nhaCungCaps[3], loaiHangs[5]));
+            sanPhams.Add(new SanPham(24, "May dieu hoa LG", 9490000, 2, 2021, nhaCungCaps[3], loaiHangs[5]));
             sanPhams.Add(new SanPham(25, "Laptop Asus 1", 17000000, 1, 2021, nhaCungCaps[1], loaiHangs[0]));
-            sanPhams.Add(new SanPham(26, "May dieu hoa Casper 1", 13000000, 2, 2021, nhaCungCaps[2], loaiHangs[4]));
+            sanPhams.Add(new SanPham(26, "May dieu hoa Casper 1", 13000000, 2, 2021, nhaCungCaps[2], loaiHangs[5]));
         }
 
         public static void taoDSKhachHang()
